@@ -2,7 +2,6 @@
 #include <vector>
 #include <cmath>
 #include <algorithm>
-#include <bitset>
 
 int main() {
     int number;
@@ -36,3 +35,4 @@ int main() {
 
     return 0;
 }
+
