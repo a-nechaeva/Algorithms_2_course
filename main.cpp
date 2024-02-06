@@ -11,6 +11,7 @@ int main() {
 
     std::string input_string, temp_string;
     std::map<std::string , std::vector<std::string >> global_map;
+    std::vector<std::string> only_parent;
 
     for (int i = 0; i < number; ++i) {
         std::vector<std::string> cur_words;
@@ -23,9 +24,11 @@ int main() {
         for (int j = 0; j < cur_words.size(); ++j) {
             std::string cur_key;
             cur_key = cur_words[j];
+            // проверка наличия ключа
             if (global_map.find(cur_key) != global_map.end()) {
 
                 if (j < cur_words.size() - 1) {
+                    // проверка наличия элемента в словаре
                     auto element = std::find(global_map[cur_key].begin(),
                                              global_map[cur_key].end(), cur_words[j + 1]);
                     if (element == global_map[cur_key].end()) {
@@ -33,6 +36,9 @@ int main() {
                         temp.push_back(cur_words[j + 1]);
                         global_map[cur_key] = temp;
                     }
+                    // удаляем из массива родителей элемент, являющийся чьи-то потомком
+                    only_parent.erase(std::remove(only_parent.begin(), only_parent.end(),
+                                                  cur_words[j + 1]), only_parent.end());
                 }
             } else {
                 if (j < cur_words.size() - 1) {
@@ -44,8 +50,26 @@ int main() {
                     temp.push_back("");
                     global_map[cur_key] = temp;
                 }
+                only_parent.push_back(cur_key);
             }
         }
+    }
+    //найти таких родителей, которые не являются ничьими потомками
+    // берем массив only_parent и начинаем в лексическом порядке вытягивать цепочки родитель-потомок
+    std::sort(only_parent.begin(), only_parent.end());
+
+    
+
+    for (int i = 0; i < only_parent.size(); ++i) {
+        int white_space_counter = 0;
+        printf("%s\n", only_parent[i].c_str());
+        std::string cur_key = only_parent[i];
+
+        //iter 1
+        // рекурсия???
+        ++white_space_counter;
+        std::vector<std::string > cur_children = global_map[cur_key];
+        std::sort(cur_children.begin(), cur_children.end());
     }
    /* for(const auto& pair : global_map) {
         std::cout << "Key: " << pair.first << ", Value: ";
@@ -55,7 +79,7 @@ int main() {
         std::cout << std::endl;
     }
     */
-   
+
 
     return 0;
 }
