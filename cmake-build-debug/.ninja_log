@@ -1,3 +1,5 @@
 # ninja log v5
 0	432	7288684067428385	CMakeFiles/tasks.dir/main.cpp.obj	7aa755cce58fcedb
 434	564	7288684068708306	tasks.exe	d3cbbc0d00c822e5
+2	649	7289573739215653	CMakeFiles/tasks.dir/main.cpp.obj	7aa755cce58fcedb
+649	870	7289573741403918	tasks.exe	d3cbbc0d00c822e5

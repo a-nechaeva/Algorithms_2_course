@@ -1,38 +1,61 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
 #include <algorithm>
-#include <bitset>
+#include <string>
+#include <sstream>
+#include <map>
 
 int main() {
     int number;
     std::cin >> number;
 
-    std::vector<int> stones_weights(number);
-
-    int full_sum = 0;
+    std::string input_string, temp_string;
+    std::map<std::string , std::vector<std::string >> global_map;
 
     for (int i = 0; i < number; ++i) {
-        std::cin >> stones_weights[i];
-        full_sum += stones_weights[i];
-    }
+        std::vector<std::string> cur_words;
+        std::cin >> input_string;
 
-    int min = full_sum;
-
-    for (int i = 0; i < pow(2, number - 1); ++i) {
-        int cur = i;
-        int iter_numb = 0;
-        int first_sum = 0;
-        while (cur != 0) {
-            if (cur % 2 == 1) {
-                first_sum += stones_weights[iter_numb];
-            }
-            cur = cur / 2;
-            ++iter_numb;
+        std::stringstream string_like_stream(input_string);
+        while (std::getline(string_like_stream, temp_string, '\\' )) {
+            cur_words.push_back(temp_string);
         }
-        min = std::min(min, std::abs(full_sum - 2 * first_sum));
+        for (int j = 0; j < cur_words.size(); ++j) {
+            std::string cur_key;
+            cur_key = cur_words[j];
+            if (global_map.find(cur_key) != global_map.end()) {
+
+                if (j < cur_words.size() - 1) {
+                    auto element = std::find(global_map[cur_key].begin(),
+                                             global_map[cur_key].end(), cur_words[j + 1]);
+                    if (element == global_map[cur_key].end()) {
+                        std::vector<std::string > temp = global_map[cur_key];
+                        temp.push_back(cur_words[j + 1]);
+                        global_map[cur_key] = temp;
+                    }
+                }
+            } else {
+                if (j < cur_words.size() - 1) {
+                    std::vector<std::string> temp;
+                    temp.push_back(cur_words[j + 1]);
+                    global_map[cur_key] = temp;
+                } else {
+                    std::vector<std::string > temp;
+                    temp.push_back("");
+                    global_map[cur_key] = temp;
+                }
+            }
+        }
     }
-    printf("%d", min);
+   /* for(const auto& pair : global_map) {
+        std::cout << "Key: " << pair.first << ", Value: ";
+        for (int i = 0; i < pair.second.size(); ++i) {
+            std::cout << pair.second[i] << " ";
+        }
+        std::cout << std::endl;
+    }
+    */
+   
 
     return 0;
 }
