@@ -35,7 +35,7 @@ int main() {
     }
 
     // что-то интуитивное, но нужно док-ть
-    if ((sum_of_all % 2) != 0) {
+    if ((cube[0] + cube[2] + cube[5] + cube[7]) != (cube[1] + cube[3] + cube[4] + cube[6])) {
         std::cout << "IMPOSSIBLE" << std::endl;
     } else {
         // берем 1 вершину и аннигилируем со всеми смежными
