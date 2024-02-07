@@ -17,14 +17,13 @@ void annihilate(int ind_1, int ind_2) {
 }
 
 void create(int ind_1, int ind_2, int cost) {
-    cube[ind_1] += cost;
-    cube[ind_2] += cost;
 
     for (int i = 0; i < cost; ++i) {
         std::cout << v_names[ind_1] + v_names[ind_2] + "+" << std::endl;
+        ++cube[ind_1];
+        ++cube[ind_2];
     }
 }
-
 
 int main() {
     int sum_of_all = 0;
@@ -80,37 +79,6 @@ int main() {
         annihilate(6, 2);
         annihilate(6, 5);
         annihilate(6, 7);
-/*
-        // берем вершину 3 С и аннигилируем со всеми смежными кроме В
-
-        annihilate(2, 6);
-        annihilate(2, 3);
-
-        if (cube[2] > 0) {
-            create(6, 5, cube[2]);
-        }
-        annihilate(2, 6);
-
-        // берем вершину 4 D
-        annihilate(3, 7);
-        if (cube[3] > 0) {
-            create(7, 6, cube[3]);
-        }
-        annihilate(3, 7);
-
-        // берем вершину 5 E
-        annihilate(4, 5);
-        annihilate(4, 7);
-
-        if (cube[4] > 0) {
-            create(7, 6, cube[4]);
-        }
-        annihilate(4, 7);
-
-        annihilate(5, 6);
-        annihilate(6, 7);
-
- */
 
     }
 }
