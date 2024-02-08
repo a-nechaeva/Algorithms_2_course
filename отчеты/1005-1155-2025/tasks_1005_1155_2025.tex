@@ -314,7 +314,105 @@ int main() {
 \end{figure}
 
 \subsection{Основная идея}
-Основная идея состоит в том, чтобы последовательно обнулять вершины 
+В начале проверим условие возможности аннигиляции всех дуонов куба: суммы дуонов на несмежных вершинах должны быть равны между собой. То есть $A + C + F + H = B + E + D + G$. Основная идея состоит в том, чтобы последовательно обнулять вершины, начиная с A, далее B,  D, E и G, обнуление этих вершин повлечет за собой обнуление и $C, F, H$, что следует из условия выполнения проверки перед началом выполнения алгоритма.
+
+\subsection{Листинг}
+
+\begin{center}
+\begin{lstlisting}[label=some-code,caption={Исходный код для 1155}]
+#include <iostream>
+#include <vector>
+#include <string>
+#include <algorithm>
+
+int cube[8];
+std::vector<std::string> v_names = {"A", "B", "C", "D", "E", "F", "G", "H"};
+
+void annihilate(int ind_1, int ind_2) {
+    int min_numb = std::min(cube[ind_1], cube[ind_2]);
+
+    for (int i = 0; i < min_numb; ++i) {
+        std::cout << v_names[ind_1] + v_names[ind_2] + "-" << std::endl;
+        --cube[ind_1];
+        --cube[ind_2];
+    }
+}
+
+void create(int ind_1, int ind_2, int cost) {
+
+    for (int i = 0; i < cost; ++i) {
+        std::cout << v_names[ind_1] + v_names[ind_2] + "+" << std::endl;
+        ++cube[ind_1];
+        ++cube[ind_2];
+    }
+}
+
+int main() {
+    int sum_of_all = 0;
+
+    for (int i = 0; i < 8; ++i) {
+        std::cin >> cube[i];
+        sum_of_all += cube[i];
+    }
+
+    // checking the possibility of annihilating duons
+    if ((cube[0] + cube[2] + cube[5] + cube[7]) != (cube[1] + cube[3] + cube[4] + cube[6])) {
+        std::cout << "IMPOSSIBLE" << std::endl;
+    } else {
+        // take A and annihilate it using adjacent vertices
+        annihilate(0, 1);
+        annihilate(0, 3);
+        annihilate(0, 4);
+        // if after this vertex A (0) is not reset, we achieve one (paired with its adjacent vertex) from adjacent vertices to the value of A
+        if (cube[0] > 0) {
+            create(1, 2, cube[0]);
+        }
+        // here A goes to zero
+        annihilate(0, 1);
+
+        // take 2nd vertex B and annihilate with all adjacent vertices except zeroed A
+        annihilate(1, 2);
+        annihilate(1, 5);
+
+        if (cube[1] > 0) {
+            create(2, 6, cube[1]);
+        }
+        annihilate(1, 2);
+
+        //  D goes to zero
+        annihilate(3, 2);
+        annihilate(3, 7);
+
+        if (cube[3] > 0) {
+            create(7, 6, cube[3]);
+        }
+        annihilate(3, 7);
+
+        // E goes to zero
+        annihilate(4, 5);
+        annihilate(4, 7);
+
+        if (cube[4] > 0) {
+            create(7, 6, cube[4]);
+        }
+        annihilate(4, 7);
+
+        //  G goes to zero
+        annihilate(6, 2);
+        annihilate(6, 5);
+        annihilate(6, 7);
+
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\subsection{Результат}
+\begin{figure}[h]
+\center{\includegraphics[width=1\linewidth]{pic/screen_1155.png}}
+\caption{Результат отправки задачи 1155.}
+\end{figure}
+
 
 \newpage
 \section{Вывод по работе}
