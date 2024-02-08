@@ -111,7 +111,7 @@
 \vspace*{2ex}
 	{\Large \bfseries 
 			
-"Задачи 1005 и 1155"
+"Задачи 1005, 1155 и 2025"
 		}
 \vspace*{2ex}
 		
@@ -166,7 +166,7 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 
 \newpage
 \section{Цель}
-Разработать и реализовать алгоритмы для решения задач 1005 и 1155.
+Разработать и реализовать алгоритмы для решения задач 1005, 1155 и 2025.
 
 
 \section{Задача 1005}
@@ -239,16 +239,77 @@ int main() {
 
 \subsection{Результат}
 \begin{figure}[h]
-\center{\includegraphics[width=1\linewidth]{pic/screen_1005.png}}
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1005.png}}
 \caption{Результат отправки задачи 1005.}
 \end{figure}
 
 
 \newpage
+\section{Задача 2025}
+
+\begin{figure}[h]
+\center{\includegraphics[width=0.94\linewidth]{pic/task_2025.png}}
+\caption{Условие задачи 2025.}
+\end{figure}
+
+
+\subsection{Основная идея}
+Для того, чтобы максимизировать число боев, необходимо, чтобы как можно меньше бойцов находились в одной команде. То есть, в идеале в каждой команде должно быть равное число бойцов, это выполнимо только в том случае, когда количество бойцов нацело делится на число команд. В случае ненулевого остатка от деления числа бойцов на число команд, оставшихся бойцов распределяем так же равномерно. Таким образом, число бойцов в каждой команде может различаться \textbf{не больше, чем на 1}.
+
+\subsection{Краткое описание алгоритма}
+\textbf{1. Входные данные:} $t$ -- количество тестов $(1 \leq t \leq 10)$,  в следующих $t$ строках перечислены тесты, в каждой из них 2 целые числа $n$ и $k$ $ (2 \leq k \leq n \leq 10^4)$.\\
+\textbf{2.} Найдем среднее число бойцов в команде: для этого разделим общее количество бойцов на количество команд $medium\_in\_team = \frac{n}{k}$.\\
+\textbf{3.} Найдем число бойцов пока не распределенных по командам как остаток от деления числа бойцов на количество команд: $extra\_fighters = n \%k$\\
+\textbf{4.} Формула для подсчета числа боев: 
+\begin{multline*}
+F =medium\_in\_team \cdot (k - extra\_fighters) \cdot (n - medium\_in\_team) + \\
++ extra\_fighters \cdot (medium\_in\_team + 1) \cdot (n -( medium\_in\_team + 1))
+\end{multline*}
+Заметим, что сейчас симметричные бои учтены. Поэтому конечным результатом будет: $result = \frac{F}{2}$\\
+\textbf{5. Выходные данные:} для каждого из $t$ наборов целое неотрицательное число -- максимальное количество боев.
+
+
+\subsection{Листинг}
+
+\begin{center}
+\begin{lstlisting}[label=some-code,caption={Исходный код для 2025}]
+#include <iostream>
+
+
+int main() {
+    int numb_test;
+    std::cin >> numb_test;
+
+    for (int i = 0; i < numb_test; ++i) {
+
+        int fighters, teams;
+        std::cin >> fighters;
+        std::cin >> teams;
+
+        int medium_in_team = fighters / teams;
+        int extra_fighters = fighters % teams;
+        int result = (medium_in_team * (teams - extra_fighters) * (fighters - medium_in_team) +
+                      extra_fighters * (medium_in_team + 1) *
+                      (fighters - medium_in_team - 1)) / 2;
+
+        std::cout << result << std::endl;
+    }
+}
+
+\end{lstlisting}
+\end{center}
+
+\subsection{Результат}
+\begin{figure}[h]
+\center{\includegraphics[width=1\linewidth]{pic/screen_2025.png}}
+\caption{Результат отправки задачи 2025.}
+\end{figure}
+
+\newpage
 \section{Задача 1155}
 
 \begin{figure}[h]
-\center{\includegraphics[width=0.94\linewidth]{pic/task_1155.png}}
+\center{\includegraphics[width=1\linewidth]{pic/task_1155.png}}
 \caption{Условие задачи 1155.}
 \end{figure}
 
@@ -256,11 +317,7 @@ int main() {
 
 \newpage
 \section{Вывод по работе}
-
-\textit{В этой лабораторной мы будем работать с }
-\\
-Для визуализации был написан код на языке \textit{Python}. \\
-Код расположен на \href{https://github.com/a-nechaeva/practical_Linal/tree/main/lab4}{\textbf{GitHub}}.
+В ходе выполнения данной лабораторной работы были оеализованы алгоритмы для решения задач $1005$, $2025$ и $1155$. Заметим, что они не содержат сложных структур данных.
 \end{document}
 
 
