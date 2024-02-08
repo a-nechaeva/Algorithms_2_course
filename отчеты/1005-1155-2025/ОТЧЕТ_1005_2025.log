@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  8 FEB 2024 16:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  8 FEB 2024 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**tasks_1005_1155_2025.tex
-(./tasks_1005_1155_2025.tex
+**ОТЧЕТ_1005_2025.tex
+(./ОТЧЕТ_1005_2025.tex
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
 (c:/texlive/2023/texmf-dist/tex/latex/base/article.cls
@@ -1206,7 +1206,7 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count356
 \l__pdf_internal_box=\box118
 )
-(./tasks_1005_1155_2025.aux
+(./ОТЧЕТ_1005_2025.aux
 LaTeX Font Info:    Trying to load font information for T2A+cmr on input line 1
 9.
 
@@ -1217,7 +1217,7 @@ File: t2acmr.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 LaTeX Warning: Label `some-code' multiply defined.
 
 )
-\openout1 = `tasks_1005_1155_2025.aux'.
+\openout1 = `ОТЧЕТ_1005_2025.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
 LaTeX Font Info:    ... okay on input line 142.
@@ -1309,9 +1309,9 @@ your preamble.
  on input line 142.
 
 Package hyperref Info: Link coloring OFF on input line 142.
-(./tasks_1005_1155_2025.out) (./tasks_1005_1155_2025.out)
+(./ОТЧЕТ_1005_2025.out) (./ОТЧЕТ_1005_2025.out)
 \@outlinefile=\write4
-\openout4 = `tasks_1005_1155_2025.out'.
+\openout4 = `ОТЧЕТ_1005_2025.out'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 143
 .
@@ -1366,7 +1366,7 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 (c:/texlive/2023/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
-<pic/task_1005.png, id=79, 1038.88126pt x 541.02126pt>
+<pic/task_1005.png, id=71, 1038.88126pt x 541.02126pt>
 File: pic/task_1005.png Graphic file (type png)
 <use pic/task_1005.png>
 Package pdftex.def Info: pic/task_1005.png  used on input line 175.
@@ -1416,7 +1416,7 @@ LaTeX Font Info:    Trying to load font information for TS1+cmss on input line
  (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-<pic/screen_1005.png, id=114, 1633.10126pt x 444.66125pt>
+<pic/screen_1005.png, id=110, 1633.10126pt x 444.66125pt>
 File: pic/screen_1005.png Graphic file (type png)
 <use pic/screen_1005.png>
 Package pdftex.def Info: pic/screen_1005.png  used on input line 242.
@@ -1429,7 +1429,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [3{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./pic
 /screen_1005.png>]
-<pic/task_2025.png, id=149, 1065.9825pt x 788.9475pt>
+<pic/task_2025.png, id=141, 1065.9825pt x 788.9475pt>
 File: pic/task_2025.png Graphic file (type png)
 <use pic/task_2025.png>
 Package pdftex.def Info: pic/task_2025.png  used on input line 251.
@@ -1441,7 +1441,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
 [4 <./pic/task_2025.png>]
-<pic/screen_2025.png, id=156, 1622.06pt x 472.76625pt>
+<pic/screen_2025.png, id=148, 1622.06pt x 472.76625pt>
 File: pic/screen_2025.png Graphic file (type png)
 <use pic/screen_2025.png>
 Package pdftex.def Info: pic/screen_2025.png  used on input line 304.
@@ -1459,24 +1459,12 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
 [6 <./pic/screen_2025.png>]
-<pic/task_1155.png, id=192, 1053.9375pt x 1136.245pt>
-File: pic/task_1155.png Graphic file (type png)
-<use pic/task_1155.png>
-Package pdftex.def Info: pic/task_1155.png  used on input line 312.
-(pdftex.def)             Requested size: 309.84842pt x 334.04507pt.
-
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[7 <./pic/task_1155.png>]
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\footskip}{12.0pt}.
-
-[8] (./tasks_1005_1155_2025.aux)
+[7] (./ОТЧЕТ_1005_2025.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -1485,14 +1473,14 @@ L3 programming layer <2023-06-05>
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package rerunfilecheck Info: File `tasks_1005_1155_2025.out' has not changed.
-(rerunfilecheck)             Checksum: D15CF8063069A3832E64D4123FBB4E8E;2283.
+Package rerunfilecheck Info: File `ОТЧЕТ_1005_2025.out' has not changed.
+(rerunfilecheck)             Checksum: 03977338B67CB6944CA50FA82A24468D;2001.
  ) 
 Here is how much of TeX's memory you used:
- 53589 strings out of 475734
- 1318939 string characters out of 5786229
- 2304720 words of memory out of 5000000
- 73599 multiletter control sequences out of 15000+600000
+ 53576 strings out of 475734
+ 1318700 string characters out of 5786229
+ 2287709 words of memory out of 5000000
+ 73590 multiletter control sequences out of 15000+600000
  533291 words of font info for 77 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,991b,2138s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1514,10 +1502,10 @@ rm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb
 ve/2023/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2023/te
 xmf-dist/fonts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/f
 onts/type1/public/cm-super/sfti1200.pfb>
-Output written on tasks_1005_1155_2025.pdf (9 pages, 593120 bytes).
+Output written on ОТЧЕТ_1005_2025.pdf (8 pages, 511056 bytes).
 PDF statistics:
- 312 PDF objects out of 1000 (max. 8388607)
- 247 compressed objects within 3 object streams
- 90 named destinations out of 1000 (max. 500000)
- 158 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 297 PDF objects out of 1000 (max. 8388607)
+ 235 compressed objects within 3 object streams
+ 86 named destinations out of 1000 (max. 500000)
+ 137 words of extra memory for PDF output out of 10000 (max. 10000000)
 
