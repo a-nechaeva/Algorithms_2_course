@@ -1,0 +1,277 @@
+\documentclass[a5paper, 10pt]{article}
+
+% Текст
+\usepackage[utf8]{inputenc} % UTF-8 кодировка
+\usepackage[russian]{babel} % Русский язык
+\usepackage{indentfirst} % красная строка в первом параграфе в главе
+% Отображение страниц
+\usepackage{geometry} % размеры листа и отступов
+\usepackage{listings}
+\usepackage{color}
+
+\geometry{
+	left=12mm,
+	top=25mm,
+	right=15mm,
+	bottom=17mm,
+	marginparsep=0mm,
+	marginparwidth=0mm,
+	headheight=10mm,
+	headsep=7mm,
+	nofoot}
+\usepackage{afterpage,fancyhdr} % настройка колонтитулов
+\pagestyle{fancy}
+\fancypagestyle{style}{ % создание нового стиля style
+	\fancyhf{} % очистка колонтитулов
+	\fancyhead[LO, RE]{Лабораторная работа № 1 } % название документа наверху
+	\fancyhead[RO, LE]{Задачи 1005 и 1155} % название section наверху
+	\fancyfoot[RO, LE]{\thepage} % номер страницы справа внизу на нечетных и слева внизу на четных
+	\renewcommand{\headrulewidth}{0.25pt} % толщина линии сверху
+	\renewcommand{\footrulewidth}{0pt} % толцина линии снизу
+}
+\fancypagestyle{plain}{ % создание нового стиля plain -- полностью пустого
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+}
+\fancypagestyle{title}{ % создание нового стиля title -- для титульной страницы
+	\fancyhf{}
+	\fancyhead[C]{{\footnotesize
+			Министерство образования и науки Российской Федерации\\
+			Федеральное государственное автономное образовательное учреждение высшего образования
+	}}
+	\fancyfoot[C]{{\large 
+			Санкт-Петербург, 2024
+	}}
+	\renewcommand{\headrulewidth}{0pt}
+}
+
+% Математика
+\usepackage{amsmath, amsfonts, amssymb, amsthm} % Набор пакетов для математических текстов
+%\usepackage{dmvnbase} % мехматовский пакет latex-сокращений
+\usepackage{cancel} % зачеркивание для сокращений
+% Рисунки и фигуры
+\usepackage[pdftex]{graphicx} % вставка рисунков
+\usepackage{wrapfig, subcaption} % вставка фигур, обтекая текст
+\usepackage{caption} % для настройки подписей
+\captionsetup{figurewithin=none,labelsep=period, font={small,it}} % настройка подписей к рисункам
+% Рисование
+\usepackage{tikz} % рисование
+\usepackage{circuitikz}
+\usepackage{pgfplots} % графики
+% Таблицы
+\usepackage{multirow} % объединение строк
+\usepackage{multicol} % объединение столбцов
+% Остальное
+\usepackage[unicode, pdftex]{hyperref} % гиперссылки
+\usepackage{enumitem} % нормальное оформление списков
+\setlist{itemsep=0.15cm,topsep=0.15cm,parsep=1pt} % настройки списков
+% Теоремы, леммы, определения...
+\theoremstyle{definition}
+\newtheorem{Def}{Определение}
+\newtheorem*{Axiom}{Аксиома}
+\theoremstyle{plain}
+\newtheorem{Th}{Теорема}
+\newtheorem{Lem}{Лемма}
+\newtheorem{Cor}{Следствие}
+\newtheorem{Ex}{Пример}
+\theoremstyle{remark}
+\newtheorem*{Note}{Замечание}
+\newtheorem*{Solution}{Решение}
+\newtheorem*{Proof}{Доказательство}
+% Свои команды
+\newcommand{\comb}[1]{\left[\hspace{-4pt}\begin{array}{l}#1\end{array}\right.\hspace{-5pt} } % совокупность уравнений
+% Титульный лист
+\usepackage{csvsimple-l3}
+\newcommand*{\titlePage}{
+	\thispagestyle{title}
+	\begingroup
+	\begin{center}
+		%		{\footnotesize
+			%			Министерство образования и науки Российской Федерации\\
+			%			Федеральное государственное автономное образовательное учреждение высшего образования
+			%		}
+		%		
+		\vspace*{6ex}
+		
+		{\small
+			САНКТ-ПЕТЕРБУРГСКИЙ НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО	
+		}
+		
+		\vspace*{2ex}
+		
+		{\normalsize
+			Факультет систем управления и робототехники
+		}
+		
+		\vspace*{15ex}
+		
+		{\Large \bfseries 
+			Лабораторная работа № 1
+		}
+\vspace*{2ex}
+	{\Large \bfseries 
+			
+"Задачи 1005 и 1155"
+		}
+\vspace*{2ex}
+		
+		{\normalsize
+			по дисциплине Алгоритмы и структуры данных
+		}
+
+	\end{center}
+	\vspace*{20ex}
+	\begin{flushright}
+		{\large 
+			\underline{Выполнила}: студентка гр. \textbf{R3238}\\
+			\begin{flushright}
+				\textbf{Нечаева А. А.}\\
+			\end{flushright}
+		}
+		
+		\vspace*{5ex}
+		
+		{\large 
+			\underline{Преподаватель}: \textit{Тропченко Андрей Александрович}
+		}
+	\end{flushright}	
+	\newpage
+	\setcounter{page}{1}
+	\endgroup}
+
+\begin{document}
+	\titlePage
+	\pagestyle{style}
+
+\lstset{ %
+language=C,                 % выбор языка для подсветки (здесь это С)
+basicstyle=\small\sffamily, % размер и начертание шрифта для подсветки кода
+numbers=left,               % где поставить нумерацию строк (слева\справа)
+numberstyle=\tiny,           % размер шрифта для номеров строк
+stepnumber=1,                   % размер шага между двумя номерами строк
+numbersep=5pt,                % как далеко отстоят номера строк от подсвечиваемого кода
+backgroundcolor=\color{white}, % цвет фона подсветки - используем \usepackage{color}
+showspaces=false,            % показывать или нет пробелы специальными отступами
+showstringspaces=false,      % показывать или нет пробелы в строках
+showtabs=false,             % показывать или нет табуляцию в строках
+frame=single,              % рисовать рамку вокруг кода
+tabsize=2,                 % размер табуляции по умолчанию равен 2 пробелам
+captionpos=t,              % позиция заголовка вверху [t] или внизу [b] 
+breaklines=true,           % автоматически переносить строки (да\нет)
+breakatwhitespace=false, % переносить строки только если есть пробел
+escapeinside={\%*}{*)}   % если нужно добавить комментарии в коде
+}
+
+
+
+\newpage
+\section{Цель}
+Разработать и реализовать алгоритмы для решения задач 1005 и 1155.
+
+
+\section{Задача 1005}
+
+\begin{figure}[h]
+\center{\includegraphics[width=1\linewidth]{pic/task_1005.png}}
+\caption{Условие задачи 1005.}
+\end{figure}
+
+\subsection{Основная идея}
+Заметим, что максимальное суммарное значение веса камней $20 \times 100000 = 2000000$, что на 3 порядка меньше, чем вмещает тип \textit{integer}, значит, мы работаем с относительно "небольшими" данными. К тому же, задача подобна \textit{Задаче о рюкзаке} ($NP-$полная задача, большие "рюкзаки" не решаются за разумное время), значит, мы можем точно решить данную задачу используя метод \textbf{\textit{перебора}} всех возможных вариантов распределения камней на 2 кучи.
+
+\subsection{Краткое описание алгоритма}
+\textbf{1. Входные данные:} $n$ -- количество камней $(1 \leq n \leq 20)$, $w_1, \, ... \, , \, w_n \, \, (1 \leq w_i \leq 100000)$ -- вес каждого камня.\\
+\textbf{2.} Находим суммарный вес камней (\textit{full\_sum}).\\
+\textbf{3.} Далее перебираем все возможные наборы. Воспользуемся свойством двоичной системы: пусть \textbf{1} == добавление камня в кучу, \textbf{0} == сумма камней в куче не меняется. Заметим, что нам достаточно перебрать только половину всех возможных наборов (остальные будут симметричными), поэтому итерации цикла будут от $0$ до $2^{n-1}$ с шагом 1. Для определения точного номера нужного камня введена дополнительная переменная \textit{iter\_numb}, использующаяся в последовательном вычислении остатков от деления номера итерации на 2.\\
+\textbf{4.} Текущий минимум разности масс куч вычисляется с помощью стандартной функции \textit{std::min} языка \textit{C++}. \\
+Пусть $s_1$ -- масса камней в первой куче, $s_2$ -- во второй, $S$ -- сумма всех камней. Формула для модуля текущей разницы масс: 
+$$| s_2 - s_1| = | S - s_1 - s_1| = |S - 2 \cdot s_1|$$
+\textbf{5. Выходные данные:} целое неотрицательное число -- минимальная разница масс куч.
+
+\subsection{Структуры данных}
+$std::vector<int>$ -- вектор из стандартной библиотеки \textit{C++} -- динамический массив.
+
+\subsection{Листинг}
+
+\begin{center}
+\begin{lstlisting}[label=some-code,caption={Исходный код для 1005}]
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <algorithm>
+
+int main() {
+    int number;
+    std::cin >> number;
+
+    std::vector<int> stones_weights(number);
+
+    int full_sum = 0;
+
+    for (int i = 0; i < number; ++i) {
+        std::cin >> stones_weights[i];
+        full_sum += stones_weights[i];
+    }
+
+    int min = full_sum;
+
+    for (int i = 0; i < pow(2, number - 1); ++i) {
+        int cur = i;
+        int iter_numb = 0;
+        int first_sum = 0;
+        while (cur != 0) {
+            if (cur % 2 == 1) {
+                first_sum += stones_weights[iter_numb];
+            }
+            cur = cur / 2;
+            ++iter_numb;
+        }
+        min = std::min(min, std::abs(full_sum - 2 * first_sum));
+    }
+    printf("%d", min);
+
+    return 0;
+}
+
+
+\end{lstlisting}
+\end{center}
+
+\subsection{Результат}
+\begin{figure}[h]
+\center{\includegraphics[width=1\linewidth]{pic/screen_1005.png}}
+\caption{Результат отправки задачи 1005.}
+\end{figure}
+
+
+\newpage
+\section{Задача 1155}
+
+\begin{figure}[h]
+\center{\includegraphics[width=0.94\linewidth]{pic/task_1155.png}}
+\caption{Условие задачи 1155.}
+\end{figure}
+
+\subsection{Основная идея}
+
+\newpage
+\section{Вывод по работе}
+
+\textit{В этой лабораторной мы будем работать с }
+\\
+Для визуализации был написан код на языке \textit{Python}. \\
+Код расположен на \href{https://github.com/a-nechaeva/practical_Linal/tree/main/lab4}{\textbf{GitHub}}.
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
