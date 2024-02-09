@@ -32,7 +32,7 @@ int main() {
         std::cin >> cube[i];
         sum_of_all += cube[i];
     }
-    
+
     if ((cube[0] + cube[2] + cube[5] + cube[7]) != (cube[1] + cube[3] + cube[4] + cube[6])) {
         std::cout << "IMPOSSIBLE" << std::endl;
     } else {
@@ -78,6 +78,5 @@ int main() {
         annihilate(6, 2);
         annihilate(6, 5);
         annihilate(6, 7);
-
     }
 }

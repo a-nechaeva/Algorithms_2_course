@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  8 FEB 2024 19:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  8 FEB 2024 19:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1222,27 +1222,27 @@ LaTeX Warning: Label `some-code' multiply defined.
 )
 \openout1 = `tasks_1005_1155_2025.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 142.
-LaTeX Font Info:    ... okay on input line 142.
-LaTeX Info: Redefining \th on input line 142.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 143.
+LaTeX Font Info:    ... okay on input line 143.
+LaTeX Info: Redefining \th on input line 143.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1309,20 +1309,20 @@ Package caption Info: End \AtBeginDocument code.
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.18} into 
 your preamble.
- on input line 142.
+ on input line 143.
 
-Package hyperref Info: Link coloring OFF on input line 142.
+Package hyperref Info: Link coloring OFF on input line 143.
 (./tasks_1005_1155_2025.out) (./tasks_1005_1155_2025.out)
 \@outlinefile=\write4
 \openout4 = `tasks_1005_1155_2025.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 143
+LaTeX Font Info:    Trying to load font information for U+msa on input line 144
 .
 
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 143
+LaTeX Font Info:    Trying to load font information for U+msb on input line 144
 .
 
 (c:/texlive/2023/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -1349,19 +1349,19 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 144.
+ine 145.
 
 
 Package fancyhdr Warning: \fancyhead's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 144.
+ine 145.
 
 
 Package fancyhdr Warning: \fancyfoot's `E' option without twoside option is use
 less.
 (fancyhdr)                Please consider using the `twoside' option on input l
-ine 144.
+ine 145.
 
 (c:/texlive/2023/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
@@ -1372,16 +1372,16 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 <pic/task_1005.png, id=87, 1038.88126pt x 541.02126pt>
 File: pic/task_1005.png Graphic file (type png)
 <use pic/task_1005.png>
-Package pdftex.def Info: pic/task_1005.png  used on input line 175.
+Package pdftex.def Info: pic/task_1005.png  used on input line 176.
 (pdftex.def)             Requested size: 344.27837pt x 179.28879pt.
 
-Overfull \hbox (6.76614pt too wide) in paragraph at lines 180--181
+Overfull \hbox (6.76614pt too wide) in paragraph at lines 181--182
 []\T2A/cmr/m/n/10 «аметим, что мак-си-маль-ное сум-мар-ное зна-че-ние ве-са кам
 -ней $\OT1/cmr/m/n/10 20 \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 100000 =
  []
 
 
-Overfull \hbox (7.12305pt too wide) in paragraph at lines 183--188
+Overfull \hbox (7.12305pt too wide) in paragraph at lines 184--189
 []\T2A/cmr/bx/n/10 1. ¬ход-ные дан-ные: $\OML/cmm/m/it/10 n$ \T2A/cmr/m/n/10 --
  ко-ли-че-ство кам-ней $\OT1/cmr/m/n/10 (1 \OMS/cmsy/m/n/10 ^^T \OML/cmm/m/it/1
 0 n \OMS/cmsy/m/n/10 ^^T \OT1/cmr/m/n/10 20)$\T2A/cmr/m/n/10 , $\OML/cmm/m/it/1
@@ -1398,13 +1398,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.188 $$
+l.189 $$
         | s_2 - s_1| = | S - s_1 - s_1| = |S - 2 \cdot s_1|$$ [1 <./pic/task_10
 05.png>]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 197.
+nput line 198.
 LaTeX Font Info:    Trying to load font information for T2A+cmss on input line 
-197.
+198.
  (c:/texlive/2023/texmf-dist/tex/latex/cyrillic/t2acmss.fd
 File: t2acmss.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
@@ -1415,14 +1415,14 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 
 [2]
 LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
-218.
+219.
  (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmss.fd
 File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 <pic/screen_1005.png, id=122, 1633.10126pt x 444.66125pt>
 File: pic/screen_1005.png Graphic file (type png)
 <use pic/screen_1005.png>
-Package pdftex.def Info: pic/screen_1005.png  used on input line 242.
+Package pdftex.def Info: pic/screen_1005.png  used on input line 243.
 (pdftex.def)             Requested size: 309.84842pt x 84.36438pt.
 
 
@@ -1435,7 +1435,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 <pic/task_2025.png, id=157, 1065.9825pt x 788.9475pt>
 File: pic/task_2025.png Graphic file (type png)
 <use pic/task_2025.png>
-Package pdftex.def Info: pic/task_2025.png  used on input line 251.
+Package pdftex.def Info: pic/task_2025.png  used on input line 252.
 (pdftex.def)             Requested size: 323.6225pt x 239.51508pt.
 
 
@@ -1447,7 +1447,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 <pic/screen_2025.png, id=165, 1622.06pt x 472.76625pt>
 File: pic/screen_2025.png Graphic file (type png)
 <use pic/screen_2025.png>
-Package pdftex.def Info: pic/screen_2025.png  used on input line 304.
+Package pdftex.def Info: pic/screen_2025.png  used on input line 305.
 (pdftex.def)             Requested size: 344.27837pt x 100.34427pt.
 
 
@@ -1465,7 +1465,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 <pic/task_1155.png, id=200, 1053.9375pt x 1136.245pt>
 File: pic/task_1155.png Graphic file (type png)
 <use pic/task_1155.png>
-Package pdftex.def Info: pic/task_1155.png  used on input line 312.
+Package pdftex.def Info: pic/task_1155.png  used on input line 313.
 (pdftex.def)             Requested size: 309.84842pt x 334.04507pt.
 
 
@@ -1489,7 +1489,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 <pic/screen_1155.png, id=290, 1606.0pt x 426.59375pt>
 File: pic/screen_1155.png Graphic file (type png)
 <use pic/screen_1155.png>
-Package pdftex.def Info: pic/screen_1155.png  used on input line 412.
+Package pdftex.def Info: pic/screen_1155.png  used on input line 413.
 (pdftex.def)             Requested size: 344.27837pt x 91.44897pt.
 
 
@@ -1518,7 +1518,7 @@ Package rerunfilecheck Info: File `tasks_1005_1155_2025.out' has not changed.
 Here is how much of TeX's memory you used:
  53712 strings out of 475734
  1320657 string characters out of 5786229
- 2398720 words of memory out of 5000000
+ 2398757 words of memory out of 5000000
  73630 multiletter control sequences out of 15000+600000
  534166 words of font info for 78 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1542,7 +1542,7 @@ ve/2023/texmf-dist/fonts/type1/public/cm-super/sfsx0900.pfb><c:/texlive/2023/te
 xmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texlive/2023/texmf-dist/f
 onts/type1/public/cm-super/sfti1000.pfb><c:/texlive/2023/texmf-dist/fonts/type1
 /public/cm-super/sfti1200.pfb>
-Output written on tasks_1005_1155_2025.pdf (12 pages, 667528 bytes).
+Output written on tasks_1005_1155_2025.pdf (12 pages, 667578 bytes).
 PDF statistics:
  445 PDF objects out of 1000 (max. 8388607)
  372 compressed objects within 4 object streams
