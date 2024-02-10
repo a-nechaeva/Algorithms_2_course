@@ -23,8 +23,8 @@
 \pagestyle{fancy}
 \fancypagestyle{style}{ % создание нового стиля style
 	\fancyhf{} % очистка колонтитулов
-	\fancyhead[LO, RE]{Лабораторная работа № 1 } % название документа наверху
-	\fancyhead[RO, LE]{Задачи 1005, 1155 и 2025} % название section наверху
+	\fancyhead[LO, RE]{Лабораторная работа № 2 } % название документа наверху
+	\fancyhead[RO, LE]{Задачи 1296, 1494 и 0} % название section наверху
 	\fancyfoot[RO, LE]{\thepage} % номер страницы справа внизу на нечетных и слева внизу на четных
 	\renewcommand{\headrulewidth}{0.25pt} % толщина линии сверху
 	\renewcommand{\footrulewidth}{0pt} % толцина линии снизу
@@ -106,12 +106,12 @@
 		\vspace*{15ex}
 		
 		{\Large \bfseries 
-			Лабораторная работа № 1
+			Лабораторная работа № 2
 		}
 \vspace*{2ex}
 	{\Large \bfseries 
 			
-"Задачи 1005, 1155 и 2025"
+"Задачи 1296, 1494 и 0"
 		}
 \vspace*{2ex}
 		
@@ -167,7 +167,7 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 
 \newpage
 \section{Цель}
-Разработать и реализовать алгоритмы для решения задач 1296, 0 и 0.
+Разработать и реализовать алгоритмы для решения задач 1296, 1494 и 0.
 
 
 \section{Задача 1296}
@@ -211,6 +211,7 @@ int main() {
         cur_sum = cur_sum < 0 ? 0 : cur_sum;
         max_sum = max_sum < cur_sum ? cur_sum : max_sum;
     }
+}
 
 \end{lstlisting}
 \end{center}
@@ -222,10 +223,86 @@ int main() {
 \end{figure}
 
 
+\newpage
+\section{Задача 1494}
+
+\begin{figure}[h]
+\center{\includegraphics[width=1\linewidth]{pic/task_1494.png}}
+\caption{Условие задачи 1494.}
+\end{figure}
+
+
+\subsection{Основная идея}
+Основная идея состоит в том, чтобы на каждом шаге итерации проверять, является текущая подпоследовательность обратной с шагом 1.
+
+\subsection{Краткое описание алгоритма}
+\textbf{1. Входные данные:} количество шаров -- целое число $n$, такое что $(1 \leq n \leq 100000)$. В следующих $n$ строках даны номера этих шаров в том порядке, в котором ревизор забирал их из луны. \\
+\textbf{2.} Введем переменные $temp$ -- отвечает за максимальный встреченный номер шара, тип $int$; $cheater$ -- отвечает за то, уличен ли Чичиков в читерстве, тип $bool$. Так же объявим $stack\_of\_balls$ -- помогает нам проверять, корректно ли загнаны в лунку шары. \\
+\textbf{3.} При вводе каждого нового номера шара, проверяем, больше ли он $temp$, если, да, тогда складываем в стек номера с $temp + 1$ до текущего номера шара. Затем обновляем значение $temp$, присваивая ему значение текущего шара; иначе проверяем равенство текущего номера шара значению вершины стека, если это условие выполнено, то убираем верхний номер шара, иначе, присваеваем переменной $cheater$ значение $true$, так как получена последовательность неудовлетворяющая условиям честной игры. \\
+\textbf{5. Выходные данные:} строка $"Not a proof"$ -- для случая честной игры, иначе -- $"Cheater"$ .
+
+\subsection{Структуры данных}
+В данной работе была использована структура данных \textbf{стек}. Стек сравним со стопкой книг, когда мы складываем книги первая оказывается в самом низу. Книги можно забирать только с вершины, то есть мы не можем вытаскивать книги из случайного места стопки. Чтобы достичь книги, которую мы положили первой, необходимо снять все книги, которые были сложены в стопку после нее. Выполняется принцип \textbf{First In -- Last Out (FILO)}.
+
+\newpage
+\subsection{Листинг}
+
+\begin{center}
+\begin{lstlisting}[label=some-code,caption={Исходный код для 1494}]
+#include <iostream>
+#include <stack>
+
+
+int main() {
+    int n;
+    std::cin >> n;
+    // special data structure stack (first in - last out)
+    // helps to check order of balls
+    std::stack<int> stack_of_balls;
+    bool cheater = false;
+    // the biggest number of ball was input
+    int temp = 0;
+    for (int i = 0; i < n; ++i) {
+        int cur_ball;
+        std::cin >> cur_ball;
+        // check and update stack of the balls
+        if (temp < cur_ball) {
+            for (int j = temp + 1; j < cur_ball; ++j) {
+                stack_of_balls.push(j);
+            }
+            temp = cur_ball;
+        } else {
+            // check if current ball is on the top of stack
+            if (cur_ball == stack_of_balls.top()) {
+                // update stack by pop the highest
+                stack_of_balls.pop();
+            } else {
+                cheater = true;
+            }
+        }
+    }
+
+    if (cheater) {
+        std::cout << "Cheater" << std::endl;
+    } else {
+        std::cout << "Not a proof" << std::endl;
+    }
+}
+\end{lstlisting}
+\end{center}
+
+\subsection{Результат}
+\begin{figure}[h]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1494.png}}
+\caption{Результат отправки задачи 1494.}
+\end{figure}
+
+
+
 
 \newpage
 \section{Вывод по работе}
-В ходе выполнения данной лабораторной работы были оеализованы алгоритмы для решения задач $1296$, $0$ и $0$.
+В ходе выполнения данной лабораторной работы были оеализованы алгоритмы для решения задач $1296$, $1494$ и $0$. Для решения задачи $1494$ была использована особая структура данных -- стек.
 \end{document}
 
 
