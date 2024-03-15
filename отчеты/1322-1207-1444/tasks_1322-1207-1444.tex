@@ -181,6 +181,235 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 Задача сводится к поиску максимальной суммы подпоследовательности последовательности $p_i$.
 
 \subsection{Краткое описание алгоритма}
+\textbf{1. Входные данные:} первая строка содержит целое число $N\, (4 \leq N \leq 10000)$. Каждая из следующих $N$ строк содержит пары целых чисел $x_i, y_i \, (-10^6 \leq x_i, y_i \leq 10^6)$-- координаты $i$-й точки. \\
+\textbf{2.} Для разделения плоскости на 2 части необходимо найти точку, которая расположена левее всех остальных. \\
+\textbf{3.} Далее определим угол прямой, проведенной до каждой из оставшихся точек и отсортируем точки по величине угла. \\
+\textbf{4.} Теперь мы можем определить точку, через которую проходит прямая, разделяющая точки на плоскости пополам. \\
+\textbf{5.} Выходные данные: порядковые номера 2-х точек, прямая через которые разделитт все точки плоскости на 2 равные половины.
+
+\subsection{Листинг}
+
+\begin{center}
+\begin{lstlisting}[label=some-code,caption={Исходный код для 1207}]
+#include <iostream>
+#include <cmath>
+
+#define PI 3.14159265358979323846
+
+// new struct for points, it keeps x, y, number of the point and angle
+struct point_struct {
+    int x;
+    int y;
+    double angle;
+    int num;
+};
+
+point_struct data[10000];
+
+bool compare(point_struct a, point_struct b) {
+    return a.angle < b.angle;
+}
+
+void quick_sort(int left, int right){
+    int i = left;
+    int j = right;
+
+    point_struct median = data[(left + right) / 2];
+
+    while (i <= j) {
+        while (compare(data[i], median)) {
+            ++i;
+        }
+        while (compare(median, data[j])) {
+            --j;
+        }
+        if (i <= j) {
+            std::swap(data[i], data[j]);
+            ++i;
+            --j;
+        }
+    }
+    if (i < right) {
+        quick_sort(i, right);
+    }
+    if (left < j) {
+        quick_sort(left, j);
+    }
+};
+
+int main() {
+    int n;
+    std::cin >> n;
+
+    int first_x = 1000000;
+    int first_id = 0;
+
+    for (int i = 0; i < n; ++i) {
+        int p_x;
+        int p_y;
+
+        std::cin >> p_x >> p_y;
+
+        if (p_x < first_x) {
+            first_id = i;
+            first_x = p_x;
+        }
+
+        data[i].x = p_x;
+        data[i].y = p_y;
+        data[i].num = i;
+    }
+
+    // here we analyze the angles
+    for (int i = 0; i < n; ++i) {
+        if (data[i].num == first_id) {
+            data[i].angle = -360;
+        } else {
+            if (data[i].x == data[first_id].x) {
+                if (data[i].y > data[first_id].y) {
+                    data[i].angle = 90;
+                } else {
+                    data[i].angle = -90;
+                }
+            } else {
+                data[i].angle = atan((double) (data[i].y - data[first_id].y) / (data[i].x - data[first_id].x)) * 180.0 / PI;
+            }
+        }
+    }
+
+    quick_sort(0, n - 1);
+
+    std::cout << first_id + 1 << " " << data[n / 2].num + 1 << std::endl;
+
+    return 0;
+}
+
+\end{lstlisting}
+\end{center}
+
+\subsection{Результат}
+\begin{figure}[h]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1207.png}}
+\caption{Результат отправки задачи 1207.}
+\end{figure}
+
+
+\newpage
+
+\section{Задача 1322}
+
+\begin{figure}[h]
+\center{\includegraphics[width=0.773\linewidth]{pic/task_1322.png}}
+\caption{Условие задачи 1322.}
+\end{figure}
+
+\subsection{Основная идея}
+
+Задача сводится к работе с \textbf{преобразованием Барроуза--Уилера}, в нашем случае необходимо выполнить обратное преобразование.
+
+\subsection{Краткое описание алгоритма}
+\textbf{1. Входные данные:} целое число $s \, \, (s \leq 100000) $ и строка $str$. \\
+\textbf{2.} Последовательно восстанавливаем строку. Пусть изначально известно, каким по порядку является приписанный в начало символ (его порядок в столбце)\\
+\textbf{3.} Из предыдущего шага известно, какое место занимала строка без первого символа (i-ое).\\
+\textbf{4.} Несложно заметить, что при выполнении такой операции строка с номером $i$ всегда будет перемещаться на позицию с номером $j$.\\
+\textbf{5. Выходные данные:} строка.
+
+\subsection{Листинг}
+
+\begin{center}
+\begin{lstlisting}[label=some-code,caption={Исходный код для 1322}]
+#include <iostream>
+
+
+const int maximum_n = 100000;
+
+std::pair<char, int> data[maximum_n];
+
+bool comparator(std::pair<char, int> first, std::pair<char, int> second) {
+    return (first.first != second.first) ? first.first < second.first : first.second < second.second;
+}
+
+//sort in lexicographic order (quick sort)
+void sorter(int left, int right) {
+    int i = left;
+    int j = right;
+
+    std::pair<char, int> cur = data[(left + right) / 2];
+
+    while (i <= j) {
+        while (comparator(data[i], cur)) {
+            ++i;
+        }
+        while (comparator(cur, data[j])) {
+            --j;
+        }
+
+        if (i <= j) {
+            std::swap(data[i++], data[j--]);
+        }
+    }
+
+    if (i < right) sorter(i, right);
+
+    if (j > left) sorter(left, j);
+
+}
+
+int main() {
+    int s;
+    std::string str;
+
+    std::cin >> s >> str;
+
+    int symbols_counter = str.length();
+
+    for (int i = 0; i < symbols_counter; ++i) {
+        data[i].first = str[i];
+        data[i].second = i;
+    }
+
+    sorter(0, symbols_counter - 1);
+
+    int result[symbols_counter];
+
+    for (int i = 0; i < symbols_counter; ++i) {
+        result[i] = data[i].second;
+    }
+
+    int current = s - 1;
+
+    for (int i = 0; i < symbols_counter; ++i) {
+        std::cout << data[current].first;
+        current = result[current];
+    }
+
+    return 0;
+}
+
+\end{lstlisting}
+\end{center}
+
+\subsection{Результат}
+
+\begin{figure}[h]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1322.png}}
+\caption{Результат отправки задачи 1322.}
+\end{figure}
+
+
+
+\newpage
+\section{Задача 1444}
+
+\begin{figure}[h]
+\center{\includegraphics[width=0.9\linewidth]{pic/task_1444.png}}
+\caption{Условие задачи 1444.}
+\end{figure}
+
+\subsection{Основная идея}
+Задача сводится к поиску максимальной суммы подпоследовательности последовательности $p_i$.
+
+\subsection{Краткое описание алгоритма}
 \textbf{1. Входные данные:} \\
 \textbf{2.} \\
 \textbf{3.} \\
@@ -190,7 +419,7 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 \subsection{Листинг}
 
 \begin{center}
-\begin{lstlisting}[label=some-code,caption={Исходный код для 1207}]
+\begin{lstlisting}[label=some-code,caption={Исходный код для 1444}]
 #include <iostream>
 
 
@@ -205,8 +434,6 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 
 
 \newpage
-
-
 
 
 

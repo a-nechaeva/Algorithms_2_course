@@ -9,7 +9,7 @@ bool comparator(std::pair<char, int> first, std::pair<char, int> second) {
     return (first.first != second.first) ? first.first < second.first : first.second < second.second;
 }
 
-
+//sort in lexicographic order (quick sort)
 void sorter(int left, int right) {
     int i = left;
     int j = right;
@@ -25,7 +25,7 @@ void sorter(int left, int right) {
         }
 
         if (i <= j) {
-            std::swap(data[i++], data[j--]); // здесь тоже мб тонкое место
+            std::swap(data[i++], data[j--]);
         }
     }
 
