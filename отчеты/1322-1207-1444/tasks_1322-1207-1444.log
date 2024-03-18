@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  16 MAR 2024 15:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  18 MAR 2024 15:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1484,7 +1484,31 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[11] (./tasks_1322-1207-1444.aux)
+[11]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[12]
+<pic/screen_1444.png, id=420, 1681.28125pt x 423.5825pt>
+File: pic/screen_1444.png Graphic file (type png)
+<use pic/screen_1444.png>
+Package pdftex.def Info: pic/screen_1444.png  used on input line 541.
+(pdftex.def)             Requested size: 309.84842pt x 78.06421pt.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[13 <./pic/screen_1444.png>]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[14] (./tasks_1322-1207-1444.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -1497,10 +1521,10 @@ Package rerunfilecheck Info: File `tasks_1322-1207-1444.out' has not changed.
 (rerunfilecheck)             Checksum: A666DC1938491C7EE8CD5E0EC362F97A;2607.
  ) 
 Here is how much of TeX's memory you used:
- 53729 strings out of 475734
- 1320593 string characters out of 5786229
- 2374750 words of memory out of 5000000
- 73634 multiletter control sequences out of 15000+600000
+ 53878 strings out of 475734
+ 1322631 string characters out of 5786229
+ 2430750 words of memory out of 5000000
+ 73669 multiletter control sequences out of 15000+600000
  531595 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,12n,89p,845b,2138s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1520,10 +1544,10 @@ m-super/sfsi0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sf
 ss0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx0900.pfb
 ><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texli
 ve/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on tasks_1322-1207-1444.pdf (12 pages, 663329 bytes).
+Output written on tasks_1322-1207-1444.pdf (15 pages, 747782 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 381 compressed objects within 4 object streams
- 197 named destinations out of 1000 (max. 500000)
- 174 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 598 PDF objects out of 1000 (max. 8388607)
+ 526 compressed objects within 6 object streams
+ 311 named destinations out of 1000 (max. 500000)
+ 179 words of extra memory for PDF output out of 10000 (max. 10000000)
 
