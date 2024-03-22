@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  22 MAR 2024 12:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.14)  22 MAR 2024 15:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1401,10 +1401,33 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
 [2]
-<pic/task_1604.png, id=98, 1033.8625pt x 1112.155pt>
+LaTeX Font Info:    Trying to load font information for TS1+cmss on input line 
+215.
+ (c:/texlive/2023/texmf-dist/tex/latex/base/ts1cmss.fd
+File: ts1cmss.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[3{c:/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<pic/screen_1401.png, id=162, 1612.0225pt x 442.65375pt>
+File: pic/screen_1401.png Graphic file (type png)
+<use pic/screen_1401.png>
+Package pdftex.def Info: pic/screen_1401.png  used on input line 265.
+(pdftex.def)             Requested size: 309.84842pt x 85.0777pt.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[4 <./pic/screen_1401.png>]
+<pic/task_1604.png, id=179, 1033.8625pt x 1112.155pt>
 File: pic/task_1604.png Graphic file (type png)
 <use pic/task_1604.png>
-Package pdftex.def Info: pic/task_1604.png  used on input line 214.
+Package pdftex.def Info: pic/task_1604.png  used on input line 276.
 (pdftex.def)             Requested size: 309.84842pt x 333.30968pt.
 
 
@@ -1412,25 +1435,7 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[3 <./pic/task_1604.png>]
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\footskip}{12.0pt}.
-
-[4]
-<pic/task_1726.png, id=111, 1025.8325pt x 1056.94875pt>
-File: pic/task_1726.png Graphic file (type png)
-<use pic/task_1726.png>
-Package pdftex.def Info: pic/task_1726.png  used on input line 254.
-(pdftex.def)             Requested size: 309.84842pt x 319.24818pt.
-
-
-Package fancyhdr Warning: \footskip is too small (0.0pt): 
-(fancyhdr)                Make it at least 12.0pt, for example:
-(fancyhdr)                \setlength{\footskip}{12.0pt}.
-
-[5 <./pic/task_1726.png>]
+[5 <./pic/task_1604.png>]
 
 Package fancyhdr Warning: \footskip is too small (0.0pt): 
 (fancyhdr)                Make it at least 12.0pt, for example:
@@ -1442,7 +1447,43 @@ Package fancyhdr Warning: \footskip is too small (0.0pt):
 (fancyhdr)                Make it at least 12.0pt, for example:
 (fancyhdr)                \setlength{\footskip}{12.0pt}.
 
-[7] (./tasks_1401-1604-1726.aux)
+[7]
+<pic/screen_1604.png, id=261, 1622.06pt x 406.51875pt>
+File: pic/screen_1604.png Graphic file (type png)
+<use pic/screen_1604.png>
+Package pdftex.def Info: pic/screen_1604.png  used on input line 384.
+(pdftex.def)             Requested size: 309.84842pt x 77.65495pt.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[8 <./pic/screen_1604.png>]
+<pic/task_1726.png, id=292, 1025.8325pt x 1056.94875pt>
+File: pic/task_1726.png Graphic file (type png)
+<use pic/task_1726.png>
+Package pdftex.def Info: pic/task_1726.png  used on input line 401.
+(pdftex.def)             Requested size: 309.84842pt x 319.24818pt.
+
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[9 <./pic/task_1726.png>]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[10]
+
+Package fancyhdr Warning: \footskip is too small (0.0pt): 
+(fancyhdr)                Make it at least 12.0pt, for example:
+(fancyhdr)                \setlength{\footskip}{12.0pt}.
+
+[11] (./tasks_1401-1604-1726.aux)
  ***********
 LaTeX2e <2023-06-01>
 L3 programming layer <2023-06-05>
@@ -1455,13 +1496,13 @@ Package rerunfilecheck Info: File `tasks_1401-1604-1726.out' has not changed.
 (rerunfilecheck)             Checksum: 423E3BB33CD15E0CE6B30C4F9E2F8BC3;2121.
  ) 
 Here is how much of TeX's memory you used:
- 53429 strings out of 475734
- 1316340 string characters out of 5786229
- 2169747 words of memory out of 5000000
- 73506 multiletter control sequences out of 15000+600000
- 530378 words of font info for 73 fonts, out of 8000000 for 9000
+ 53714 strings out of 475734
+ 1320382 string characters out of 5786229
+ 2527749 words of memory out of 5000000
+ 73625 multiletter control sequences out of 15000+600000
+ 531595 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,11n,89p,773b,1302s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,12n,89p,793b,2138s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <c:/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/tex
 live/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2023/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2023/texmf-dist
@@ -1474,13 +1515,14 @@ ive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb><c:/texlive/2023/t
 exmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb><c:/texlive/2023/texmf-dist/
 fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2023/texmf-dist/fonts/type
 1/public/cm-super/sfrm1200.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/c
-m-super/sfss0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sf
-sx0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb
-><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on tasks_1401-1604-1726.pdf (8 pages, 832098 bytes).
+m-super/sfsi0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sf
+ss0900.pfb><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfsx0900.pfb
+><c:/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb><c:/texli
+ve/2023/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
+Output written on tasks_1401-1604-1726.pdf (12 pages, 987736 bytes).
 PDF statistics:
- 211 PDF objects out of 1000 (max. 8388607)
- 159 compressed objects within 2 object streams
- 31 named destinations out of 1000 (max. 500000)
- 140 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 365 compressed objects within 4 object streams
+ 191 named destinations out of 1000 (max. 500000)
+ 150 words of extra memory for PDF output out of 10000 (max. 10000000)
 
