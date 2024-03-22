@@ -403,11 +403,11 @@ int main() {
 \end{figure}
 
 \subsection{Краткое описание алгоритма}
-\textbf{1. Входные данные:} \\
-\textbf{2.}  \\
-\textbf{3.}  \\
-\textbf{4.}  \\
-\textbf{5.} Выходные данные: 
+\textbf{1. Входные данные:} первая строка содержит целое число $n$ -- количество членов программного комитета $(2 \leq n \leq 10^5)$. В $i$-й из следующих $n$ строк через пробел записаны целые числа $x_i$, $y_i$ -- координаты дома $i$-го члена программного комитета $(1 \leq x_i , y_i \leq 10^6)$.\\
+\textbf{2.} Рассчитаем расстояние как манхэттенское, то есть отдельно будем считать по двум координатм. Получим среднее значение, посчитав сумму расстояний между всеми домами и разделив ее на количество путей. \\
+\textbf{3.} С помощью алгоритма быстрой сортировки отсортируем все координаты. Вычислим расстояние между каждой парой соседних домов $r$ по одной координате   \\
+\textbf{4.} Далее посчитаем, какое число человек проходит по этому пути проходит: $i$ человек справа и $n - i$ слева, суммарный путь, пройденный получим по формуле $r \cdot i \cdot (n - i)$.\\
+\textbf{5. Выходные данные:} выведите среднее расстояние, которое проходит член программного комитета от своего дома до своего товарища, округленное вниз до целых.
 
 \subsection{Листинг}
 
@@ -415,21 +415,95 @@ int main() {
 \begin{lstlisting}[label=some-code,caption={Исходный код для 1726}]
 #include <iostream>
 
+unsigned long long x[100000];
+unsigned long long y[100000];
+
+//quicksort for x
+void sorter_x(int left, int right) {
+    int i = left;
+    int j = right;
+
+    unsigned long long medium = x[(left + right) / 2];
+
+    while (i <= j) {
+        while (x[i] < medium) {
+            ++i;
+        }
+        while (medium < x[j]) {
+            --j;
+        }
+
+        if (i <= j) {
+            std::swap(x[i++], x[j--]);
+        }
+    }
+
+    if (i < right) sorter_x(i, right);
+
+    if (j > left) sorter_x(left, j);
+
+}
+
+//quicksort for y
+void sorter_y(int left, int right) {
+    int i = left;
+    int j = right;
+
+    unsigned long long medium = y[(left + right) / 2];
+
+    while (i <= j) {
+        while (y[i] < medium) {
+            ++i;
+        }
+        while (medium < y[j]) {
+            --j;
+        }
+
+        if (i <= j) {
+            std::swap(y[i++], y[j--]);
+        }
+    }
+
+    if (i < right) sorter_y(i, right);
+
+    if (j > left) sorter_y(left, j);
+}
+
+int main() {
+    long long n;
+    std::cin >> n;
+    unsigned long long sum = 0l;
+
+    for (long long i = 0; i < n; ++i) {
+        std::cin >> x[i] >> y[i];
+    }
+
+    sorter_x(0, (int) n - 1);
+    sorter_y(0, (int) n - 1);
+
+    for (int i = 0; i < n; ++i) {
+        sum += (x[i] - x[i - 1]) * i * (n - i);
+        sum += (y[i] - y[i - 1]) * i * (n - i);
+    }
+    sum = 2l * sum / (n * (n - 1));
+    std::cout << sum;
+    return 0;    
+}
 
 \end{lstlisting}
 \end{center}
 
 \subsection{Результат}
-%\begin{figure}[h]
-%\center{\includegraphics[width=0.9\linewidth]{pic/screen_1726.png}}
-%\caption{Результат отправки задачи 1726.}
-%\end{figure}
+\begin{figure}[h]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1726.png}}
+\caption{Результат отправки задачи 1726.}
+\end{figure}
 
 
 
 \newpage
 \section{Вывод по работе}
-В ходе выполнения данной лабораторной работы были реализованы алгоритмы для решения задач $1401$, $1604$ и $1726$. 
+В ходе выполнения данной лабораторной работы были реализованы алгоритмы для решения задач $1401$, $1604$ и $1726$. Все эти задачи объединяет необходимость применения рекурсии, в двух последних рекурсия реализуется внутри алгоритма \textbf{quicksort}.
 \end{document}
 
 
