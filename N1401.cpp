@@ -23,7 +23,7 @@ void creator(int n, int x, int y,  int empty_x, int empty_y) {
     for (int i = 0; i < 2; ++i) {
         for (int j = 0; j < 2; ++j) {
             if (x + i * n / 2 > empty_x || x + i * n / 2 + n / 2 <= empty_x ||
-                y + j * n / 2 > empty_y || y + j * n / 2 + n / 2 <= empty_y) {
+            y + j * n / 2 > empty_y || y + j * n / 2 + n / 2 <= empty_y) {
                 result_points[x + n / 2 - 1 + i][y + n / 2 - 1 + j] = current_number / 3;
                 ++current_number;
             }
