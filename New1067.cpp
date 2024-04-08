@@ -65,7 +65,7 @@ int main() {
                 }
 
                 d = "";
-                
+
             } else {
                 d += cur_path[j];
             }

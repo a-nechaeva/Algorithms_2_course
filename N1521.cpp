@@ -12,7 +12,7 @@ int main() {
     for (int i = 0; i < n; ++i) {
         circle_order.push_back(i);
     }
-
+    // position to go out of the circle
     int go_away = --k;
 
     for (int i = --n; i > 0; --i) {
