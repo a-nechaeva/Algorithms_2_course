@@ -42,32 +42,36 @@ int main() {
     int n;
     std::cin >> n;
 
-    disk* main_part = new disk();
+    disk* rt = new disk();
 
     for (int i = 0; i < n; ++i) {
         std::string cur_path;
         std::cin >> cur_path;
-        disk* cur_part = main_part;
-        std::string dir;
+        disk* cur_d = rt;
+        std::string d;
 
         for (int j = 0; j <= cur_path.size(); ++j) {
-            if (cur_path[j] == '\\' || cur_path[j] == '\0') {
-                auto dir_tr = cur_part -> child.find(dir);
 
-                if (dir_tr == cur_part -> child.end()) {
-                    disk* new_disk = new disk(dir);
-                    cur_part -> child[dir] = new_disk;
-                    cur_part = cur_part -> child.find(dir) -> second;
+            if (cur_path[j] == '\\' || cur_path[j] == '\0') {
+                auto d_disk = cur_d -> child.find(d);
+
+                if (d_disk == cur_d -> child.end()) {
+                    disk* new_disk = new disk(d);
+                    cur_d -> child[d] = new_disk;
+                    cur_d = cur_d -> child.find(d) -> second;
+
                 } else {
-                    cur_part = dir_tr -> second;
+                    cur_d = d_disk -> second;
                 }
-                dir = "";
+
+                d = "";
+                
             } else {
-                dir += cur_path[j];
+                d += cur_path[j];
             }
         }
     }
-    disk_printer(main_part, 0);
+    disk_printer(rt, 0);
 
     return 0;
 }

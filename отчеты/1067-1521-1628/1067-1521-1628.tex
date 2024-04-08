@@ -182,7 +182,7 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 Имя каждой папки состоит из 1-8 заглавных букв, цифр или специальных символов из следующего списка: восклицательный знак, решетка, знак доллара, знак процента, амперсанд, апостроф, открывающаяся и закрывающаяся скобки, знак дефиса, собаки, циркумфлекс, подчеркивание, гравис, открывающаяся и закрывающаяся фигурная скобка и тильда. \\
 \textbf{2.} Прямая реализация описанного в задании алгоритма действий с помощью специальной структуры, содержащей имя и указатели на дочерние каталоги; \\
 \textbf{3.} После реализован рекурсивный обход полученной структуры директорий в глубину. \\
-\textbf{4.}  \\
+\textbf{4.}  И с помощью отдельного метода выведен результат.\\
 \textbf{5.} Выходные данные: вывести отформатированное дерево папок. Каждое имя папки должно быть выведено в отдельной строке, перед ним должно стоять несколько пробелов, указывающих на глубину этой папки в иерархии. Подпапки должны быть перечислены в лексикографическом порядке непосредственно после их родительской папки; перед их именем должно стоять на один пробел больше, чем перед именем их родительской папки. Папки верхнего уровня выводятся без пробелов и также должны быть перечислены в лексикографическом порядке.
 
 \subsection{Листинг}
@@ -190,16 +190,94 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 \begin{center}
 \begin{lstlisting}[label=some-code,caption={Исходный код для 1067}]
 #include <iostream>
+#include <map>
+#include <utility>
+
+
+// structure for smart store disk items and their relates
+struct disk {
+    std::string item;
+    std::map<std::string, disk *> child;
+
+    // clang-tidy recommendation for single-argument constructions
+    explicit disk(std::string name) {
+        // clang-tidy recommendation
+        this -> item = std::move(name);
+        this -> child = {};
+    }
+
+    disk() {
+        this -> item = "";
+        this -> child = {};
+    }
+};
+
+
+// method for printing disk structure in recursive mode
+void disk_printer(disk* cur, int depth) {
+    for (int i = 0; i < depth - 1; ++i) {
+        std::cout << " ";
+    }
+    if (!cur -> item.empty()) {
+        std::cout << cur -> item << std::endl;
+    }
+    ++depth;
+
+    for (auto &child_dir : cur -> child) {
+        disk_printer(child_dir.second, depth);
+    }
+}
+
+
+int main() {
+    int n;
+    std::cin >> n;
+
+    disk* rt = new disk();
+
+    for (int i = 0; i < n; ++i) {
+        std::string cur_path;
+        std::cin >> cur_path;
+        disk* cur_d = rt;
+        std::string d;
+
+        for (int j = 0; j <= cur_path.size(); ++j) {
+            
+            if (cur_path[j] == '\\' || cur_path[j] == '\0') {
+                auto d_disk = cur_d -> child.find(d);
+
+                if (d_disk == cur_d -> child.end()) {
+                    disk* new_disk = new disk(d);
+                    cur_d -> child[d] = new_disk;
+                    cur_d = cur_d -> child.find(d) -> second;
+                    
+                } else {
+                    cur_d = d_disk -> second;
+                }
+                
+                d = "";
+                
+            } else {
+                d += cur_path[j];
+            }
+        }
+    }
+    disk_printer(rt, 0);
+
+    return 0;
+}
+
+
 
 
 \end{lstlisting}
 \end{center}
 
 \subsection{Результат}
-%\begin{figure}[h]
-%\center{\includegraphics[width=0.9\linewidth]{pic/screen_1067.png}}
-%\caption{Результат отправки задачи 1067.}
-%\end{figure}
+\begin{figure}[h!]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1067.png}}
+\caption{Результат отправки задачи 1067.}
+\end{figure}
 
 
 
