@@ -298,7 +298,7 @@ int main(){
 
 \subsection{Результат}
 \begin{figure}[h]
-\center{\includegraphics[width=0.9\linewidth]{pic/screen_1160.png}}
+\center{\includegraphics[width=1\linewidth]{pic/screen_1160.png}}
 \caption{Результат отправки задачи 1160.}
 \end{figure}
 
@@ -314,27 +314,93 @@ int main(){
 \end{figure}
 
 \subsection{Краткое описание алгоритма}
-\textbf{1. Входные данные:} \\
-\textbf{2.}  \\
-\textbf{3.}  \\
-\textbf{4.}  \\
-\textbf{5.} Выходные данные: 
 
+В основе решения лежит применение алгоритма \textbf{Форда-Беллмана} -- алгоритм нахождения кратчайшего пути из заданной вершины $s$ до всех остальных вершин взвешенного графа $G = \left( V, E \right)$. Если в графе $G$ есть циклю с отрицательным суммарным весом, притом достижимые из $s$, тогда кратчайших путей не существует.\\
+
+\textbf{1. Входные данные:} первая строка содержит 4 целых числа: $N$ -- количество валют, $M$ -- количество обменных пунктов, $S$ -- номер валюты, имеющейся у Ника, и $V$ -- количество единиц валюты, имеющейся у него. \\
+
+Следующие $M$ строк содержат по 6 чисел каждая -- описание соответствующего пункта обмена (номера валют (a, b), которые можно обменять в этом пункте, обменные курсы (rate) и комиссии (commission): rab, cab, rba, cba). Числа разделены одним или несколькими пробелами. $1 \leq S \leq N \leq 100$, $1 \leq M \leq 100$, $V$ -- вещественное число, $0 \leq V \leq 10^3$.\\
+
+ Для каждого пункта обмена курсы и комиссии являются вещественными числами с не более чем двумя цифрами после запятой.\\
+
+\textbf{2.} зададим специальную структуру, в которой будем хранить информацию о каждой возможной операции с двумя валютами: номера валют, курс и комиссия, сохраним считанные характеристики обменных пунктов в структуре данных \textit{vector}; \\
+
+\textbf{3.}  на каждом шаге будем рассматривать все возможные пути из каждой посещенной вершины, выбирать максимальный из возможных;\\
+
+\textbf{4.}  в результате у нас будет вектор, в котором будут записаны максимальные значения от начальной вершины;\\
+
+\textbf{5.Выходные данные:} если Ник может увеличить свое состяние, вывести \textit{"YES"}, иначе \textit{"NO"}. 
+
+\newpage
 \subsection{Листинг}
 
 \begin{center}
 \begin{lstlisting}[label=some-code,caption={Исходный код для 1162}]
 #include <iostream>
+#include <algorithm>
+#include <vector>
+
+
+// special structure to store exchange points parameters
+struct _exchange {
+    int a;
+    int b;
+    double rate;
+    double commission;
+};
+
+std::vector<_exchange> _exchanges;
+
+double nodes[101];
+
+
+int main() {
+
+    int n, m, s;
+    double v;
+
+    std::cin >> n >> m >> s >> v;
+    nodes[s] = v;
+
+    for (int i = 0; i < m; ++i) {
+
+        int a, b;
+        double rab, cab, rba, cba;
+
+        std::cin >> a >> b >> rab >> cab >> rba >> cba;
+
+        _exchanges.push_back({a, b, rab, cab});
+        _exchanges.push_back({b, a, rba, cba});
+    }
+
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < _exchanges.size(); ++j) {
+            nodes[_exchanges[j].b] = std::max(_exchanges[j].rate * 
+                    (nodes[_exchanges[j].a] - _exchanges[j].commission),nodes[_exchanges[j].b]);
+        }
+    }
+
+    for (int i = 0; i < _exchanges.size(); ++i) {
+        if ( nodes[_exchanges[i].b] < _exchanges[i].rate * (nodes[_exchanges[i].a] - _exchanges[i].commission)) {
+            std::cout << "YES";
+            exit(0);
+        }
+    }
+    std::cout << "NO";
+}
+
+
+
 
 
 \end{lstlisting}
 \end{center}
 
 \subsection{Результат}
-%\begin{figure}[h]
-%\center{\includegraphics[width=0.9\linewidth]{pic/screen_1162.png}}
-%\caption{Результат отправки задачи 1162.}
-%\end{figure}
+\begin{figure}[h!]
+\center{\includegraphics[width=1\linewidth]{pic/screen_1162.png}}
+\caption{Результат отправки задачи 1162.}
+\end{figure}
 
 
 
@@ -378,7 +444,7 @@ int main(){
 \section{Вывод по работе}
 В ходе выполнения данной лабораторной работы были реализованы алгоритмы для решения задач $1160$, $1162$ и $1650$. \\
 
-Решение задачи 1160 основывается на применении алгоритма Краскала.
+Решение задачи 1160 основывается на применении алгоритма Краскала, задачи 1162 -- алгоритм Форда-Беллмана. 
 \end{document}
 
 
