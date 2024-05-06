@@ -55,6 +55,7 @@ int main() {
 
     _my_bfs(0);
 
+    // check that all vertexes are colored
     for (int i = 0; i < n; ++i) {
         if (color[i] == -1) {
             _my_bfs(i);
