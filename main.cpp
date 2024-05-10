@@ -1,67 +1,115 @@
 #include <iostream>
-#include <vector>
-#include <queue>
+#include <map>
+#include <set>
 
 
-std::vector<int> color(100, -1);
-std::vector<int> edge[100];
+// structure for city parameters
+struct City {
+    std::string _name;
+    long long _money;
+    int _days;
+} pCity[60000];
 
-
-// bfs algorithm
-void _my_bfs(int _start) {
-
-    std::queue<int> _queue;
-    _queue.push(_start);
-    color[_start] = 0;
-
-    while (!_queue.empty()) {
-        int v = _queue.front();
-        _queue.pop();
-
-        for (int i = 0; i < edge[v].size(); ++i) {
-            int _cur_edge = edge[v][i];
-
-            if (color[v] == color[_cur_edge]) {
-                std::cout << -1;
-                exit(0);
-            }
-
-            if (color[_cur_edge] == -1) {
-                color[_cur_edge] = !color[v];
-                _queue.push(_cur_edge);
-            }
-        }
-    }
-}
+//structure for billionaires' parameters
+struct Billionaire {
+    long long _money;
+    City *_loc;
+} pBillionaire[10000];
 
 
 int main() {
-    int n;
 
+    int n, m, k;
     std::cin >> n;
 
-    for (int i = 0; i < n; ++i) {
-        int _token = -1;
+    int _city_number = 0;
 
-        while (_token != 0) {
-            std::cin >> _token;
+    std::map<std::string, City *> _cities;
+    std::map<std::string, Billionaire *> _billionaires;
+    std::set<std::pair<long long, City *>, std::greater<>> score;
 
-            if (_token != 0) {
-                edge[i].push_back(--_token);
-                edge[_token++].push_back(i);
-            }
+    for (int i = 0; i < n; i++) {
+        std::string name_person;
+        std::string name_city;
+        long long money;
+        std::cin >> name_person >> name_city >> money;
+
+        if (!_cities[name_city]) {
+
+            pCity[_city_number]._name = name_city;
+            pCity[_city_number]._money = money;
+            _cities[name_city] = &pCity[_city_number++];
+
+        } else _cities[name_city]->_money += money;
+
+
+        pBillionaire[i]._money = money;
+        pBillionaire[i]._loc = _cities[name_city];
+        _billionaires[name_person] = &pBillionaire[i];
+
+    }
+
+    for (auto &item : _cities) {
+        score.insert({item.second->_money, item.second});
+    }
+
+    int today = 0;
+
+    std::cin >> m >> k;
+
+    for (int i = 0; i < k; i++) {
+        int day;
+        std::string name_person;
+        std::string name_city;
+        std::cin >> day >> name_person >> name_city;
+
+        int count = day - today;
+        today = day;
+
+        auto a = score.begin();
+        auto b = a++;
+
+        if (a->first < b->first || a == score.end()) {
+            b->second->_days += count;
+        }
+
+        City *to_city = _cities[name_city];
+        Billionaire *who = _billionaires[name_person];
+
+        if (to_city == nullptr) {
+
+            pCity[_city_number]._name = name_city;
+            _cities[name_city] = &pCity[_city_number++];
+            to_city = _cities[name_city];
+        }
+
+        score.erase({who->_loc->_money, who->_loc});
+        score.erase({to_city->_money, to_city});
+
+        who->_loc->_money -= who->_money;
+
+        score.insert({who->_loc->_money, who->_loc});
+
+        who->_loc = to_city;
+        to_city->_money += who->_money;
+
+        score.insert({to_city->_money, to_city});
+    }
+
+    int count = m - today;
+
+    auto a = score.begin();
+    auto b = a++;
+
+    if (a->first < b->first || a == score.end()) {
+        b->second->_days += count;
+    }
+
+    for (auto &item : _cities) {
+        if (item.second->_days > 0) {
+            std::cout << item.first << " " << item.second->_days << std::endl;
         }
     }
 
-    _my_bfs(0);
-
-    for (int i = 0; i < n; ++i) {
-        if (color[i] == -1) {
-            _my_bfs(i);
-        }
-    }
-    for (int i = 0; i < n; ++i) {
-        std::cout << color[i];
-    }
     return 0;
 }

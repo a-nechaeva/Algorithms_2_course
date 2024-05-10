@@ -197,16 +197,129 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 \begin{center}
 \begin{lstlisting}[label=some-code,caption={Исходный код для 1650}]
 #include <iostream>
+#include <map>
+#include <set>
 
 
+// structure for city parameters
+struct City {
+    std::string _name;
+    long long _money;
+    int _days;
+} pCity[60000];
+
+//structure for billionaires' parameters
+struct Billionaire {
+    long long _money;
+    City *_loc;
+} pBillionaire[10000];
+
+
+int main() {
+
+    int n, m, k;
+    std::cin >> n;
+
+    int _city_number = 0;
+
+    std::map<std::string, City *> _cities;
+    std::map<std::string, Billionaire *> _billionaires;
+    std::set<std::pair<long long, City *>, std::greater<>> score;
+
+    for (int i = 0; i < n; i++) {
+        std::string name_person;
+        std::string name_city;
+        long long money;
+        std::cin >> name_person >> name_city >> money;
+
+        if (!_cities[name_city]) {
+
+            pCity[_city_number]._name = name_city;
+            pCity[_city_number]._money = money;
+            _cities[name_city] = &pCity[_city_number++];
+
+        } else _cities[name_city]->_money += money;
+
+
+        pBillionaire[i]._money = money;
+        pBillionaire[i]._loc = _cities[name_city];
+        _billionaires[name_person] = &pBillionaire[i];
+
+    }
+
+    for (auto &item : _cities) {
+        score.insert({item.second->_money, item.second});
+    }
+
+    int today = 0;
+
+    std::cin >> m >> k;
+
+    for (int i = 0; i < k; i++) {
+        int day;
+        std::string name_person;
+        std::string name_city;
+        std::cin >> day >> name_person >> name_city;
+
+        int count = day - today;
+        today = day;
+
+        auto a = score.begin();
+        auto b = a++;
+
+        if (a->first < b->first || a == score.end()) {
+            b->second->_days += count;
+        }
+
+        City *to_city = _cities[name_city];
+        Billionaire *who = _billionaires[name_person];
+
+        if (to_city == nullptr) {
+
+            pCity[_city_number]._name = name_city;
+            _cities[name_city] = &pCity[_city_number++];
+            to_city = _cities[name_city];
+        }
+
+        score.erase({who->_loc->_money, who->_loc});
+        score.erase({to_city->_money, to_city});
+
+        who->_loc->_money -= who->_money;
+
+        score.insert({who->_loc->_money, who->_loc});
+
+        who->_loc = to_city;
+        to_city->_money += who->_money;
+
+        score.insert({to_city->_money, to_city});
+    }
+
+    int count = m - today;
+
+    auto a = score.begin();
+    auto b = a++;
+
+    if (a->first < b->first || a == score.end()) {
+        b->second->_days += count;
+    }
+
+    for (auto &item : _cities) {
+        if (item.second->_days > 0) {
+            std::cout << item.first << " " << item.second->_days << std::endl;
+        }
+    }
+
+    return 0;
+}
 \end{lstlisting}
 \end{center}
 
+\newpage
 \subsection{Результат}
-%\begin{figure}[h!]
-%\center{\includegraphics[width=0.9\linewidth]{pic/screen_1650.png}}
-%\caption{Результат отправки задачи 1650.}
-%\end{figure}
+\begin{figure}[h!]
+\center{\includegraphics[width=1\linewidth]{pic/screen_1650.png}}
+\caption{Результат отправки задачи 1650.}
+\end{figure}
 
 
 
@@ -223,27 +336,77 @@ escapeinside={\%*}{*)}   % если нужно добавить коммента
 \end{figure}
 
 \subsection{Краткое описание алгоритма}
-\textbf{1. Входные данные:} \\
-\textbf{2.}  \\
-\textbf{3.}  \\
-\textbf{4.}  \\
-\textbf{5. Выходные данные:} 
+В основе решения лежит применение алгоритма \textbf{Форда-Беллмана} -- алгоритм нахождения кратчайшего пути из заданной вершины $s$ до всех остальных вершин взвешенного графа $G = \left( V, E \right)$. Если в графе $G$ есть циклю с отрицательным суммарным весом, притом достижимые из $s$, тогда кратчайших путей не существует.\\
+
+\textbf{1. Входные данные:} первая строка содержит целые числа $N \, (2 \leq N \leq 500)$ и $M \, (0 \leq M \leq 124750)$. Каждая из следующих $M$ строк содержит целые числа $A[i], \, B[i] \, (1 \leq A[i],\, B[i] \leq N)$ и $C[i] \, (1 \leq C[i] \leq 10000)$ для соответствующего газопровода. Последняя строка содержит целые числа $S$ и $F \, (1 \leq S,\, F \leq N; S \neq F)$.\\
+
+\textbf{2.} создадим отдельный массив, в котором будет фиксироваться максимальная газопроводность на каждом шаге; \\
+
+\textbf{3.} на каждом шаге рассмотрим все пути из каждой посещенной вершины, в случае нахождения большего значения максимальной газопроводности в вершину $v$, обновляем значение по этому индексу в массиве из прошлого пункта; \\
+
+\textbf{4.} таким образом, в массиве из пункта 2 будут находиться максимальные значения газопроводности, -1 означает, что такого пути нет.  \\
+
+\textbf{5. Выходные данные:} если искомый маршрут существует, выведите его прибыльность. Иначе выведите "No solution".
 
 \subsection{Листинг}
 
 \begin{center}
 \begin{lstlisting}[label=some-code,caption={Исходный код для 1450}]
 #include <iostream>
+#include <vector>
 
 
+// structure to keep the edge
+struct Way {
+    int a, b, w;
+};
+
+
+int main() {
+
+    std::ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
+    std::cout.tie(0);
+
+    int n, m, s, f;
+    std::vector<Way> ways;
+    std::vector<int> gas_transfer(500, -1);
+
+    std::cin >> n >> m;
+
+    for (int i = 0; i < m; ++i) {
+        int a, b, w;
+        std::cin >> a >> b >> w;
+        ways.push_back({a - 1, b - 1, w});
+    }
+
+    std::cin >> s >> f;
+    --s;
+    --f;
+    
+    gas_transfer[s] = 0;
+
+    for (int i = 0; i < n - 1; ++i) {
+        for (int j = 0; j < m; ++j) {
+
+            if (gas_transfer[ways[j].b] < gas_transfer[ways[j].a] + ways[j].w && gas_transfer[ways[j].a] != -1)
+                gas_transfer[ways[j].b] = gas_transfer[ways[j].a] + ways[j].w;
+        }
+    }
+
+    if (gas_transfer[f] != -1) std::cout << gas_transfer[f];
+    else std::cout << "No solution";
+
+    return 0;
+}
 \end{lstlisting}
 \end{center}
 
 \subsection{Результат}
-%\begin{figure}[h!]
-%\center{\includegraphics[width=0.9\linewidth]{pic/screen_1450.png}}
-%\caption{Результат отправки задачи 1450.}
-%\end{figure}
+\begin{figure}[h!]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1450.png}}
+\caption{Результат отправки задачи 1450.}
+\end{figure}
 
 
 

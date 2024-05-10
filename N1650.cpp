@@ -3,52 +3,58 @@
 #include <set>
 
 
+// structure for city parameters
 struct City {
-    std::string name;
-    long long money;
-    int days;
-} city[60000];
+    std::string _name;
+    long long _money;
+    int _days;
+} pCity[60000];
 
-struct Person {
-    long long money;
-    City *location;
-} person[10000];
+//structure for billionaires' parameters
+struct Billionaire {
+    long long _money;
+    City *_loc;
+} pBillionaire[10000];
 
-std::map<std::string, Person *> human;
-std::map<std::string, City *> world;
-std::set<std::pair<long long, City *>, std::greater<>> score;
 
 int main() {
 
-    int n;
+    int n, m, k;
     std::cin >> n;
 
-    int cnt = 0;
+    int _city_number = 0;
+
+    std::map<std::string, City *> _cities;
+    std::map<std::string, Billionaire *> _billionaires;
+    std::set<std::pair<long long, City *>, std::greater<>> score;
+
     for (int i = 0; i < n; i++) {
         std::string name_person;
         std::string name_city;
         long long money;
         std::cin >> name_person >> name_city >> money;
 
-        if (!world[name_city]) {
-            city[cnt].name = name_city;
-            city[cnt].money = money;
-            world[name_city] = &city[cnt];
-            cnt++;
-        } else {
-            world[name_city]->money += money;
-        }
+        if (!_cities[name_city]) {
 
-        person[i].money = money;
-        person[i].location = world[name_city];
-        human[name_person] = &person[i];
+            pCity[_city_number]._name = name_city;
+            pCity[_city_number]._money = money;
+            _cities[name_city] = &pCity[_city_number++];
+
+        } else _cities[name_city]->_money += money;
+
+
+        pBillionaire[i]._money = money;
+        pBillionaire[i]._loc = _cities[name_city];
+        _billionaires[name_person] = &pBillionaire[i];
+
     }
 
-    for (auto &item : world) {
-        score.insert({item.second->money, item.second});
+    for (auto &item : _cities) {
+        score.insert({item.second->_money, item.second});
     }
 
-    int m, k, today = 0;
+    int today = 0;
+
     std::cin >> m >> k;
 
     for (int i = 0; i < k; i++) {
@@ -60,43 +66,48 @@ int main() {
         int count = day - today;
         today = day;
 
-        auto it2 = score.begin();
-        auto it = it2++;
+        auto a = score.begin();
+        auto b = a++;
 
-        if (it2 == score.end() || it->first > it2->first) {
-            it->second->days += count;
+        if (a->first < b->first || a == score.end()) {
+            b->second->_days += count;
         }
 
-        City *to_city = world[name_city];
-        Person *who = human[name_person];
+        City *to_city = _cities[name_city];
+        Billionaire *who = _billionaires[name_person];
 
         if (to_city == nullptr) {
-            city[cnt].name = name_city;
-            world[name_city] = &city[cnt];
-            cnt++;
 
-            to_city = world[name_city];
+            pCity[_city_number]._name = name_city;
+            _cities[name_city] = &pCity[_city_number++];
+            to_city = _cities[name_city];
         }
 
-        score.erase({who->location->money, who->location});
-        score.erase({to_city->money, to_city});
-        who->location->money -= who->money;
-        score.insert({who->location->money, who->location});
-        who->location = to_city;
-        to_city->money += who->money;
-        score.insert({to_city->money, to_city});
+        score.erase({who->_loc->_money, who->_loc});
+        score.erase({to_city->_money, to_city});
+
+        who->_loc->_money -= who->_money;
+
+        score.insert({who->_loc->_money, who->_loc});
+
+        who->_loc = to_city;
+        to_city->_money += who->_money;
+
+        score.insert({to_city->_money, to_city});
     }
 
     int count = m - today;
-    auto it2 = score.begin();
-    auto it = it2++;
-    if (it2 == score.end() || it->first > it2->first) {
-        it->second->days += count;
+
+    auto a = score.begin();
+    auto b = a++;
+
+    if (a->first < b->first || a == score.end()) {
+        b->second->_days += count;
     }
 
-    for (auto &item : world) {
-        if (item.second->days > 0) {
-            std::cout << item.first << " " << item.second->days << std::endl;
+    for (auto &item : _cities) {
+        if (item.second->_days > 0) {
+            std::cout << item.first << " " << item.second->_days << std::endl;
         }
     }
 
