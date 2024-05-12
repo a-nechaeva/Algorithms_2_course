@@ -426,33 +426,195 @@ int main() {
 \end{figure}
 
 \subsection{Краткое описание алгоритма}
-\textbf{1. Входные данные:} \\
-\textbf{2.}  \\
-\textbf{3.}  \\
-\textbf{4.}  \\
-\textbf{5. Выходные данные:}
+В основе решения задачи лежит \textbf{алгоритм Дейкстры} -- алгоритм находждения кратчайших путей от одной из вершин графа до всех остальных.\\
+
+Каждой вершине из множества вершин V сопоставим метку — минимальное известное расстояние от этой вершины до стартовой вершины a.
+Алгоритм работает пошагово — на каждом шаге он «посещает» одну вершину и пытается уменьшать метки. Метка самой вершины a полагается равной 0, метки остальных вершин — бесконечности. Это отражает то, что расстояния от a до других вершин пока неизвестны. Все вершины графа помечаются как непосещённые.\\
+
+ Если все вершины посещены, алгоритм завершается. В противном случае, из ещё не посещённых вершин выбирается вершина u, имеющая минимальную метку. Мы рассматриваем всевозможные маршруты, в которых u является предпоследним пунктом. Вершины, в которые ведут рёбра из u, назовём соседями этой вершины. Для каждого соседа вершины u, кроме отмеченных как посещённые, рассмотрим новую длину пути, равную сумме значений текущей метки u и длины ребра, соединяющего u с этим соседом. Если полученное значение длины меньше значения метки соседа, заменим значение метки полученным значением длины. Работа алгоритма завершается, когда все вершины посещены. \\
+
+
+\textbf{1. Входные данные:} в первой строке записано целое число $n$ $(2 \leq n \leq 50000)$ — количество бойцов в дивизии. Во второй строке через пробел в порядке невозрастания записаны десять целых чисел в пределах от $1$ до $10000$ — время передачи сообщения с одного телеграфа на другой при длине общего префикса их номеров, равной нулю, единице, двум, …, девяти. Далее идут $n$ строк, содержащие номера телеграфов, выданных бойцам дивизии. Номер телеграфа Анки указан первым, а номер телеграфа Чапаева — последним. Все номера телеграфов попарно различны.  \\
+
+\textbf{2.}  Строим граф;\\
+
+\textbf{3.} Находим кратчайшее расстояние, с помощью алгоритма Дейкстры \\
+
+\textbf{4. Выходные данные:} если передать Чапаеву сообщение нельзя, выведите в единственной строке «-1». В противном случае в первой строке выведите минимальное время, за которое можно доставить сообщение. Во второй строке выведите количество бойцов, которые поучаствуют в его доставке, а в третьей строке выведите через пробел их номера в порядке от Анки к Чапаеву. Бойцы $25$-й дивизии занумерованы числами от $1$ до $n$ в том порядке, в котором описаны номера их мобильных телеграфов на входе. Если существует несколько способов передать сообщение за минимальное время, выведите любой из них.
 
 \subsection{Листинг}
 
 \begin{center}
 \begin{lstlisting}[label=some-code,caption={Исходный код для 1806}]
 #include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <queue>
 
+
+const int inf = 1e9 + 7;
+const int width = 10;
+const int max_n = 50000;
+
+long long pw[width]; // 1, 10, 100 ...
+int cost[width]; // The costs of the prefix matching
+
+struct Node {
+    std::vector<std::pair<int, Node*>> v; // Neighbors <cost, Node*>
+    Node* parent{}; // Of the shortest path
+    int d{}; // Shortest path cost
+    bool visited{};
+} nodes[max_n];
+
+std::unordered_map<long long, Node*> m;
+
+int getDigit(long long num, int i) {
+    return (int) (num / pw[i] % 10);
+}
+
+long long setDigit(long long num, int i, int d) {
+    return num - ((long long) getDigit(num, i)) * pw[i] + d * pw[i];
+}
+
+int matchPrefix(long long num1, long long num2) {
+    int matched = 0;
+
+    for (int i = width - 1; i >= 0; i--) {
+        if (getDigit(num1, i) == getDigit(num2, i)) {
+            matched++;
+        } else {
+            break;
+        }
+    }
+
+    return matched;
+}
+
+// Adds this station into the graph at node #id
+void add(long long num, int id) {
+    std::vector<std::pair<int, Node*>> v;
+
+    // Replace digit
+    for (int i = 0; i < width; i++) {
+        for (int d = 0; d < 10; d++) {
+            auto num2 = setDigit(num, i, d);
+
+            if (m.find(num2) != m.end()) {
+                int c = cost[matchPrefix(num, num2)];
+                v.emplace_back( c, (*m.find(num2)).second );
+            }
+        }
+    }
+
+    // Switch two digits
+    for (int i = 0; i < width; i++) {
+        for (int j = i + 1; j < width; j++) {
+            int di = getDigit(num, i);
+            int dj = getDigit(num, j);
+
+            auto num2 = setDigit(setDigit(num, j, di), i, dj);
+
+            if(m.find(num2) != m.end()) {
+                int c = cost[matchPrefix(num, num2)];
+                v.emplace_back( c, (*m.find(num2)).second );
+            }
+        }
+    }
+
+    m[num] = &nodes[id];
+
+    for(auto p : v){
+        p.second->v.emplace_back( p.first, &nodes[id] );
+        nodes[id].v.emplace_back( p.first, p.second );
+    }
+}
+
+//  Dijkstras algorithm
+void dijkstra(Node* start, int n) {
+
+    using pin = std::pair<int, Node*>;
+    std::priority_queue<pin, std::vector<pin>, std::greater<>> q;
+
+    for (int i = 0; i < n; ++i) nodes[i].d = inf, nodes[i].visited = false;
+
+    start->d = 0;
+
+    q.push( { 0, start } );
+
+    while(!q.empty()) {
+
+        auto p = q.top();
+        q.pop();
+        auto node = p.second;
+
+        if (node->visited) continue;
+
+        node->visited = true;
+
+        for (auto it = node->v.begin(); it < node->v.end(); it++) {
+            auto u = (*it).second;
+            int cur_cost = (*it).first;
+
+            if (!u->visited && u->d > node->d + cur_cost) {
+                u->parent = node;
+                u->d = node->d + cur_cost;
+                q.push( { u->d, u });
+            }
+        }
+    }
+}
+
+int main() {
+
+    int n;
+    std::cin >> n;
+
+    long long b = 1;
+
+    for (long long & i : pw) i = b, b *= 10;
+
+    for (int & i : cost) std::cin >> i;
+
+    for (int i = 0; i < n; i++) {
+        long long num;
+        std::cin >> num;
+        add(num, i);
+    }
+
+    std::vector<Node*> result;
+    dijkstra(&nodes[0], n);
+
+    if (!nodes[n - 1].visited) {
+        std::cout << -1;
+        return 0;
+    }
+
+    std::cout << nodes[n - 1].d << "\n";
+
+    for (Node* node = &nodes[n - 1]; node; node = node->parent) result.push_back(node);
+
+    std::cout << result.size() << "\n";
+
+    for (auto item = result.rbegin(); item < result.rend(); ++item)
+        std::cout << 1 + (*item-nodes) << " ";
+}
 
 \end{lstlisting}
 \end{center}
 
 \subsection{Результат}
-%\begin{figure}[h!]
-%\center{\includegraphics[width=0.9\linewidth]{pic/screen_1806.png}}
-%\caption{Результат отправки задачи 1806.}
-%\end{figure}
+\begin{figure}[h!]
+\center{\includegraphics[width=0.9\linewidth]{pic/screen_1806.png}}
+\caption{Результат отправки задачи 1806.}
+\end{figure}
 
 
 
 \newpage
 \section{Вывод по работе}
-В ходе выполнения данной лабораторной работы были реализованы алгоритмы для решения задач $1650$, $1450$ и $1806$. 
+В ходе выполнения данной лабораторной работы были реализованы алгоритмы для решения задач $1650$, $1450$ и $1806$.\\
+
+ В задаче  $1450$ был применен алгоритм \textbf{Форда-Беллмана}, в $1806$ -- \textbf{алгоритм Дейкстры}.
 \end{document}
 
 

@@ -3,7 +3,6 @@
 #include <unordered_map>
 #include <queue>
 
-using namespace std;
 
 const int inf = 1e9 + 7;
 const int width = 10;
@@ -19,7 +18,7 @@ struct Node {
     bool visited{};
 } nodes[max_n];
 
-unordered_map<long long, Node*> m;
+std::unordered_map<long long, Node*> m;
 
 int getDigit(long long num, int i) {
     return (int) (num / pw[i] % 10);
@@ -45,7 +44,7 @@ int matchPrefix(long long num1, long long num2) {
 
 // Adds this station into the graph at node #id
 void add(long long num, int id) {
-    vector<pair<int, Node*>> v;
+    std::vector<std::pair<int, Node*>> v;
 
     // Replace digit
     for (int i = 0; i < width; i++) {
@@ -82,25 +81,25 @@ void add(long long num, int id) {
     }
 }
 
-// Dijkstra
-void search(Node* start, int n) {
-    using pin = pair<int, Node*>;
-    priority_queue<pin, vector<pin>, greater<>> q;
+//  Dijkstra’s algorithm
+void dijkstra(Node* start, int n) {
 
-    for (int i = 0; i < n; i++) {
-        nodes[i].d = inf, nodes[i].visited = false;
-    }
+    using pin = std::pair<int, Node*>;
+    std::priority_queue<pin, std::vector<pin>, std::greater<>> q;
+
+    for (int i = 0; i < n; ++i) nodes[i].d = inf, nodes[i].visited = false;
+
     start->d = 0;
 
     q.push( { 0, start } );
+
     while(!q.empty()) {
+
         auto p = q.top();
         q.pop();
         auto node = p.second;
 
-        if (node->visited) {
-            continue;
-        }
+        if (node->visited) continue;
 
         node->visited = true;
 
@@ -118,45 +117,36 @@ void search(Node* start, int n) {
 }
 
 int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(0);
-    cout.tie(0);
-
-    long long b = 1;
-    for (long long & i : pw) {
-        i = b, b *= 10;
-    }
 
     int n;
+    std::cin >> n;
 
-    cin >> n;
-    for (int & i : cost) {
-        cin >> i;
-    }
+    long long b = 1;
+
+    for (long long & i : pw) i = b, b *= 10;
+
+    for (int & i : cost) std::cin >> i;
 
     for (int i = 0; i < n; i++) {
         long long num;
-        cin >> num;
+        std::cin >> num;
         add(num, i);
     }
 
-    vector<Node*> result;
-    search(&nodes[0], n);
+    std::vector<Node*> result;
+    dijkstra(&nodes[0], n);
 
     if (!nodes[n - 1].visited) {
-        cout << -1;
+        std::cout << -1;
         return 0;
     }
 
-    cout << nodes[n - 1].d << "\n";
+    std::cout << nodes[n - 1].d << "\n";
 
-    for (Node* node = &nodes[n - 1]; node; node = node->parent) {
-        result.push_back(node);
-    }
+    for (Node* node = &nodes[n - 1]; node; node = node->parent) result.push_back(node);
 
-    cout << result.size() << "\n";
+    std::cout << result.size() << "\n";
 
-    for (auto it = result.rbegin(); it < result.rend(); it++) {
-        cout << 1 + (*it-nodes) << " ";
-    }
+    for (auto item = result.rbegin(); item < result.rend(); ++item)
+        std::cout << 1 + (*item-nodes) << " ";
 }
